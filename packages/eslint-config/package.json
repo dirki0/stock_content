@@ -1,0 +1,13 @@
+{
+  "name": "eslint-config",
+  "version": "0.0.1",
+  "private": true,
+  "type": "module",
+  "main": "eslint.config.mjs",
+  "peerDependencies": {
+    "eslint": "*"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^6.2.0"
+  }
+}

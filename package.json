@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "prepare": "pnpm run -r dev:prepare",
-    "dev:app": "pnpm --filter app dev"
+    "dev:app": "pnpm --filter app dev",
+    "lint": "pnpm run -r lint",
+    "lint:fix": "pnpm run -r lint:fix"
   },
   "keywords": [],
   "author": "",

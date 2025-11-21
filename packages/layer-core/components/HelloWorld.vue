@@ -1,7 +1,5 @@
 <script setup lang="ts">
 const { myLayer } = useAppConfig()
-
-console.log(myLayer)
 </script>
 
 <template>

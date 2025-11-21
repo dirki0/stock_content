@@ -4,16 +4,17 @@
   "version": "0.0.1",
   "main": "./nuxt.config.ts",
   "scripts": {
-    "dev": "nuxi dev .playground",
-    "build": "nuxt build .playground",
-    "generate": "nuxt generate .playground",
-    "preview": "nuxt preview .playground",
+    "dev": "nuxi dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
     "lint": "eslint .",
-    "dev:prepare": "nuxt prepare .playground",
+    "lint:fix": "eslint . --fix",
+    "dev:prepare": "nuxt prepare",
     "typecheck": "nuxt typecheck"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^6.0.0",
+    "eslint-config": "workspace:*",
     "@nuxt/eslint": "1.10.0",
     "eslint": "^9.39.1",
     "nuxt": "^4.2.1",
