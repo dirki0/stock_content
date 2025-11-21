@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "app",
   "private": true,
   "type": "module",
   "scripts": {
@@ -11,7 +11,7 @@
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
-    "my-layer": "workspace:*",
+    "layer-core": "workspace:*",
     "nuxt": "^4.2.1",
     "typescript": "^5.9.3",
     "vue": "^3.5.24",
