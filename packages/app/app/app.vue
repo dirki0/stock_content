@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <UApp>
     <NuxtWelcome />
     <HelloWorld />
     <Meow />
-  </div>
+    <UButton>Test</UButton>
+  </UApp>
 </template>

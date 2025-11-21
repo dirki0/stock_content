@@ -13,6 +13,7 @@
     "typecheck": "nuxt typecheck"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^6.0.0",
     "@nuxt/eslint": "1.10.0",
     "eslint": "^9.39.1",
     "nuxt": "^4.2.1",
