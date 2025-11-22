@@ -1,0 +1,961 @@
+{
+  "general": {
+    "name": "Demo SaaS",
+    "description": "This is a demo application built with the \"Nuxt Starter Kit\".",
+    "login": "Log In",
+    "register": "Get started",
+    "dashboard": "Dashboard",
+    "delete": "Delete",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "change": "Change",
+    "modals": {
+      "confirmation": {
+        "title": "Are you sure?",
+        "description": "This action cannot be undone.",
+        "cancel": "Cancel",
+        "confirm": "OK"
+      }
+    },
+    "links": {
+      "faq": "FAQ",
+      "docs": "Docs",
+      "blog": "Blog",
+      "testimonials": "Testimonials",
+      "pricing": "Pricing",
+      "contact": "Contact",
+      "changelog": "Changelog",
+      "legal": {
+        "terms": "Terms of Service",
+        "privacy": "Privacy Policy"
+      }
+    },
+    "footer": {
+      "copyright": "Demo SaaS © {year}"
+    },
+    "banner": {
+      "impersonation": {
+        "stopActionLabel": "Stop Impersonation",
+        "title": "Impersonating user. Be careful what you do!"
+      }
+    },
+    "cookieConsent": {
+      "title": "We use first-party cookies to enhance your experience on our website.",
+      "buttonAccept": "Accept",
+      "buttonOptOut": "Opt out"
+    }
+  },
+  "components": {
+    "billingPlanSelector": {
+      "toast": {
+        "checkoutError": "Checkout failed",
+        "activeSubscriptionError": "You have an active subscription, please cancel it first",
+        "variantIdMissing": "Variant ID is missing"
+      }
+    },
+    "avatarUpload": {
+      "toast": {
+        "error": {
+          "title": "Failed to upload image"
+        }
+      }
+    },
+    "auth": {
+      "toast": {
+        "loginSuccess": {
+          "label": "Logged in"
+        },
+        "loginError": {
+          "label": "Login failed"
+        },
+        "signupSuccess": {
+          "label": "Account created"
+        },
+        "signupError": {
+          "label": "Account creation failed"
+        },
+        "passkeyLoginSuccess": {
+          "label": "Passkey authentication successful",
+          "description": "Signed in with passkey!"
+        },
+        "passkeyLoginError": {
+          "label": "Passkey authentication failed"
+        },
+        "passkeyRegisterSuccess": {
+          "label": "Passkey created successfully",
+          "description": "Your passkey has been registered!"
+        },
+        "passkeyRegisterError": {
+          "label": "Passkey registration failed"
+        }
+      },
+      "passkey": {
+        "register": {
+          "title": "Create Passkey",
+          "emailLabel": "Email",
+          "emailPlaceholder": "your{'@'}email.com",
+          "submitButton": "Create Passkey",
+          "description": "Register with biometric authentication"
+        },
+        "login": {
+          "title": "Sign In with Passkey",
+          "submitButton": "Sign In with Passkey",
+          "description": "Authenticate with your device"
+        },
+        "auth": {
+          "signInTitle": "Sign In",
+          "signUpTitle": "Sign Up",
+          "signInDescription": "Use your passkey to sign in",
+          "signUpDescription": "Create a new passkey account",
+          "switchToSignUp": "Sign up",
+          "switchToSignIn": "Sign in",
+          "alreadyHaveAccount": "Already have an account?",
+          "noAccount": "Don't have an account?"
+        },
+        "features": {
+          "secure": {
+            "title": "More Secure",
+            "description": "Resistant to phishing and credential stuffing attacks"
+          },
+          "fast": {
+            "title": "Faster",
+            "description": "No passwords to remember or type"
+          },
+          "crossDevice": {
+            "title": "Cross-Device",
+            "description": "Synced safely via platform's secure mechanisms"
+          }
+        },
+        "info": {
+          "title": "What are Passkeys?",
+          "description": "Passkeys are a modern, passwordless authentication method based on public-key cryptography. Instead of remembering passwords, you can use your device's biometric or screen lock to authenticate.",
+          "secured": "Secured with passkey",
+          "authSuccess": "Authentication successful"
+        }
+      }
+    },
+    "faq": {
+      "returnPolicy": {
+        "question": "What's your return policy?",
+        "answer": "We offer a 30-day money back guarantee if you're not satisfied with our product."
+      },
+      "support": {
+        "question": "Do you offer customer support?",
+        "answer": "Yes, we offer 24/7 customer support."
+      },
+      "paymentMethods": {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept all major credit cards and PayPal."
+      },
+      "discount": {
+        "question": "Do you offer discounts?",
+        "answer": "Yes, we offer discounts for yearly subscriptions."
+      }
+    },
+    "waitlistForm": {
+      "help": "We won't share your email.",
+      "subscribeButton": "Subscribe",
+      "toast": {
+        "subscribe": {
+          "success": {
+            "title": "Sent confirmation email",
+            "description": "Check your mails and confirm your subscription."
+          },
+          "error": {
+            "title": "Failed to subscribe"
+          }
+        }
+      }
+    }
+  },
+  "pages": {
+    "waitlistConfirmed": {
+      "title": "You're on the waitlist",
+      "description": "Thank you for subscribing to our waitlist, we'll keep you updated on our progress.",
+      "cta": "Go to dashboard"
+    },
+    "admin": {
+      "title": "Admin",
+      "description": "Admin panel",
+      "links": {
+        "users": "Users",
+        "transactions": "Transactions",
+        "waitlist": "Waitlist",
+        "emailTemplates": "Email Templates",
+        "testimonials": "Testimonials",
+        "banner": "Banner"
+      },
+      "waitlist": {
+        "title": "Waitlist",
+        "description": "Manage the waitlist",
+        "tableHeaders": {
+          "email": "Email",
+          "emailConfirmed": "Email Confirmed?",
+          "referrer": "Referrer",
+          "createdAt": "Created At",
+          "actions": "Actions"
+        },
+        "toast": {
+          "deleteSuccess": "Waitlist entry deleted",
+          "deleteError": "Failed to delete waitlist entry"
+        },
+        "confirmDelete": {
+          "title": "Delete waitlist entry",
+          "description": "Are you sure you want to delete this waitlist entry?"
+        }
+      },
+      "emailTemplates": {
+        "title": "Email Templates",
+        "description": "Preview & send your email templates",
+        "toast": {
+          "renderError": "Failed to render email template"
+        },
+        "selectPlaceholder": "Select a template",
+        "reRenderButton": "Re-Render",
+        "sendButton": "Send",
+        "sendModal": {
+          "title": "Send email",
+          "description": "Send the selected template to an email address or the entire waitlist.",
+          "sendButton": "Send",
+          "sendToWaitlistButton": "Send to waitlist",
+          "subjectField": {
+            "label": "Subject",
+            "placeholder": "Enter the email subject"
+          },
+          "confirmSendToWaitlist": {
+            "title": "Send email to waitlist",
+            "description": "Are you sure you want to send this email to the entire waitlist with {count} subscribers?"
+          },
+          "toast": {
+            "sendSuccess": "Email sent",
+            "sendError": "Failed to send email",
+            "sendToWaitlistSuccess": "Email sent to waitlist",
+            "sendToWaitlistError": "Failed to send email to waitlist"
+          }
+        }
+      },
+      "banner": {
+        "title": "Configure App Banner",
+        "noBanner": "No banner configured",
+        "addButton": "Add",
+        "editButton": "Edit",
+        "deleteButton": "Delete",
+        "updateError": "Failed to update banner",
+        "deleteError": "Failed to delete banner",
+        "deleteConfirmationTitle": "Delete banner",
+        "deleteConfirmationDescription": "Are you sure you want to delete this banner?",
+        "modal": {
+          "titleAdd": "Add banner",
+          "titleEdit": "Edit banner",
+          "form": {
+            "title": {
+              "label": "Title"
+            },
+            "icon": {
+              "label": "Icon"
+            },
+            "closable": {
+              "label": "Is Closeable?"
+            },
+            "color": {
+              "label": "Color"
+            },
+            "link": {
+              "label": "Link"
+            },
+            "linkTarget": {
+              "label": "Link Target"
+            },
+            "showUntilDate": {
+              "label": "Show Until Date",
+              "description": "The banner will be shown until this date.",
+              "inFutureValidation": "The date must be in the future"
+            },
+            "hasUntilDate": {
+              "label": "Has Until Date?"
+            },
+            "submitButtonAdd": "Add",
+            "submitButtonEdit": "Save"
+          }
+        }
+      },
+      "testimonials": {
+        "addButton": "Add testimonial",
+        "modal": {
+          "titleAdd": "Add testimonial",
+          "titleEdit": "Edit testimonial",
+          "form": {
+            "authorName": {
+              "label": "Author Name"
+            },
+            "authorDescription": {
+              "label": "Author Description"
+            },
+            "title": {
+              "label": "Title"
+            },
+            "quote": {
+              "label": "Quote"
+            },
+            "sourceName": {
+              "label": "Source Name"
+            },
+            "sourceUrl": {
+              "label": "Source URL"
+            },
+            "authorAvatarUrl": {
+              "label": "Author Avatar"
+            },
+            "submitButtonAdd": "Add",
+            "submitButtonEdit": "Save"
+          }
+        },
+        "confirmDelete": {
+          "title": "Delete testimonial",
+          "description": "Are you sure you want to delete this testimonial?"
+        },
+        "toast": {
+          "addedSuccess": "Added new testimonial",
+          "addedError": "Failed to add new testimonial",
+          "deletedSuccess": "Testimonial deleted",
+          "deletedError": "Failed to delete testimonial",
+          "createSuccess": "User created",
+          "createError": "Failed to create user"
+        },
+        "tableHeaders": {
+          "author": "Author",
+          "title": "Title",
+          "quote": "Quote",
+          "source": "Source"
+        }
+      },
+      "users": {
+        "search": {
+          "placeholder": "Email or name"
+        },
+        "confirmDelete": {
+          "title": "Delete user",
+          "description": "Are you sure you want to delete this user?"
+        },
+        "maskEmails": "Mask emails",
+        "addUserButton": "Add user",
+        "subscriptionModal": {
+          "title": "Subscription",
+          "form": {
+            "provider": {
+              "label": "Provider"
+            },
+            "name": {
+              "label": "Name"
+            },
+            "status": {
+              "label": "Status"
+            },
+            "nextPaymentDate": {
+              "label": "Next Payment Date"
+            },
+            "cancelAt": {
+              "label": "Cancel At Date"
+            }
+          }
+        },
+        "unbanUserModal": {
+          "title": "Unban user",
+          "description": "Are you sure you want to unban this user?",
+          "reasonLabel": "Reason",
+          "cancelButton": "Cancel",
+          "confirmButton": "Confirm Unban",
+          "toast": {
+            "success": "User unbanned",
+            "error": "Failed to unban user"
+          }
+        },
+        "banUserModal": {
+          "title": "Ban user",
+          "validationMessage": {
+            "bannedReason": "Ban reason should be at least 10 characters"
+          },
+          "toast": {
+            "banSuccess": "User banned",
+            "banError": "Failed to ban user"
+          },
+          "form": {
+            "bannedReason": {
+              "label": "Ban Reason"
+            },
+            "submitButton": "Ban"
+          }
+        },
+        "addUserModal": {
+          "title": "Add new user",
+          "form": {
+            "name": {
+              "label": "Name"
+            },
+            "email": {
+              "label": "Email"
+            },
+            "password": {
+              "label": "Password"
+            },
+            "emailVerified": {
+              "label": "Auto Verify User?",
+              "helpSend": "A confirmation email will be sent to the user",
+              "helpNotSend": "A confirmation email will not be sent to the user"
+            },
+            "submitButton": "Create"
+          }
+        },
+        "filters": {
+          "all": "All Users",
+          "verified": "Verified Users",
+          "unverified": "Unverified Users",
+          "google": "Google Users",
+          "github": "GitHub Users",
+          "subscribed": "Subscribed Users",
+          "proPlan": "Pro Plan Users"
+        },
+        "tableHeaders": {
+          "id": "ID",
+          "name": "Name",
+          "avatar": "Avatar",
+          "email": "Email",
+          "verified": "Verified",
+          "banned": "Banned",
+          "role": "Role",
+          "plan": "Plan",
+          "createdAt": "Created At",
+          "lastActive": "Last Active",
+          "linkedAccounts": "Linked Accounts"
+        },
+        "tableActions": {
+          "sendLoginLink": "Send Login Magic link",
+          "sendPasswordResetEmail": "Send Password Reset Email",
+          "banUser": "Ban User",
+          "unbanUser": "Unban User",
+          "deleteUser": "Delete User",
+          "viewSubscription": "View Subscription",
+          "impersonateUser": "Impersonate User"
+        },
+        "toast": {
+          "createSuccess": "User created",
+          "createError": "Failed to create user",
+          "deleteSuccess": "User deleted",
+          "deleteError": "Failed to delete user",
+          "sendLoginLinkSuccess": "Login link sent",
+          "sendLoginLinkError": "Failed to send login link",
+          "passwordResetSuccess": "Sent password reset email",
+          "passwordResetError": "Failed to send password reset email",
+          "impersonateError": "Failed to impersonate user",
+          "impersonateResetError": "Failed to reset impersonation"
+        }
+      }
+    },
+    "home": {
+      "hero": {
+        "headline": "Powered by Nuxt UI & Nuxt Hub",
+        "action1Label": "Get started"
+      },
+      "featureSection": {
+        "one": {
+          "title": "The power of our service",
+          "description": "Ut commodo cupidatat sit aliquip aliquip aliqua aliquip cillum. Labore tempor mollit proident consectetur et cupidatat sunt. Lorem quis et irure excepteur cillum deserunt exercitation proident voluptate adipisicing. Cillum quis dolore cupidatat duis laboris ea ea incididunt id minim est proident tempor.",
+          "feature1": {
+            "title": "Easy to use",
+            "description": "Do amet eu qui ut excepteur consequat ad id dolor."
+          },
+          "feature2": {
+            "title": "Reliable",
+            "description": "Ex veniam culpa aliquip minim officia."
+          },
+          "feature3": {
+            "title": "Secure",
+            "description": "Et minim duis occaecat amet nisi sit nulla."
+          }
+        },
+        "two": {
+          "title": "The speed of our service",
+          "description": "Cillum sint enim excepteur ut deserunt qui nisi in deserunt in. Deserunt aliquip quis aliquip eu quis ex velit velit nostrud sit.",
+          "feature1": {
+            "title": "Fast",
+            "description": "Do amet eu qui ut excepteur consequat ad id dolor."
+          },
+          "feature2": {
+            "title": "Affordable",
+            "description": "Ex veniam culpa aliquip minim officia."
+          },
+          "feature3": {
+            "title": "Scalable",
+            "description": "Et minim duis occaecat amet nisi sit nulla."
+          }
+        }
+      },
+      "pricingSection": {
+        "title": "Pricing",
+        "description": "Choose the plan that works best for you."
+      },
+      "testimonialsSection": {
+        "title": "Trusted by 1.4k+ developers around the globe",
+        "description": "What our customers are saying"
+      },
+      "faqSection": {
+        "title": "Frequently asked questions",
+        "description": "Got a question? We've got answers."
+      },
+      "passkeySection": {
+        "title": "Passwordless Authentication",
+        "description": "Sign in with biometric authentication using passkeys - the modern, secure way to access your account.",
+        "ctaButton": "Try Passkey Authentication"
+      },
+      "waitlistSection": {
+        "title": "Get early access",
+        "description": "Get early access to our product"
+      },
+      "cta": {
+        "title": "Start with your SaaS idea today",
+        "description": "Get started with our service today and build your SaaS product.",
+        "link1Label": "Get started",
+        "link2Label": "Read the docs"
+      }
+    },
+    "faq": {
+      "title": "FAQ",
+      "description": "Frequently asked questions"
+    },
+    "contact": {
+      "title": "Get in Touch",
+      "description": "We are here to help you. Please use the form below to get in touch with us.",
+      "headline": "Contact us",
+      "form": {
+        "nameField": {
+          "label": "Name"
+        },
+        "emailField": {
+          "label": "Email"
+        },
+        "messageField": {
+          "label": "Message"
+        },
+        "submitButton": "Send message"
+      },
+      "toast": {
+        "success": {
+          "title": "Message sent",
+          "description": "We'll get back to you soon"
+        },
+        "error": {
+          "title": "Failed to send message"
+        }
+      }
+    },
+    "testimonials": {
+      "title": "Testimonials",
+      "description": "What our customers are saying"
+    },
+    "pricing": {
+      "title": "Pricing",
+      "description": "Choose the plan that works best for you",
+      "onThisPlan": "You're on this plan",
+      "downgrade": "Downgrade",
+      "switchPlan": "Switch to this plan",
+      "mostPopular": "Most popular",
+      "getStarted": "Get started",
+      "manageSubscription": "Manage subscription",
+      "customerPortal": "Customer Portal",
+      "toast": {
+        "openBillingPortalError": "Failed to open billing portal",
+        "confirmDowngrade": {
+          "title": "Downgrade to Free Plan",
+          "description": "Are you sure you want to cancel your active subscription and downgrade to the free plan?",
+          "confirmButton": "Yes, I want to downgrade"
+        }
+      },
+      "billingCycle": {
+        "monthly": "Monthly",
+        "yearly": "Yearly"
+      },
+      "billingOverview": {
+        "title": "Subscription",
+        "description": "Manage your plan and subscription details.",
+        "nextPaymentDue": "Next payment due on {date}",
+        "cancelAt": "Your subscription will be cancelled on {date}"
+      },
+      "plans": {
+        "free": {
+          "name": "Free",
+          "price": "${price}",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar",
+          "features": {
+            "feature1": "One developer",
+            "feature2": "Unlimited projects",
+            "feature3": "Access to GitHub repository",
+            "feature4": "Unlimited patch & minor updates",
+            "feature5": "Lifetime access"
+          },
+          "buttonText": "Get started"
+        },
+        "proMonthly": {
+          "name": "Pro",
+          "price": "${price}",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar",
+          "billingCycle": "/month",
+          "billingPeriod": "billed monthly",
+          "features": {
+            "feature1": "One developer",
+            "feature2": "Unlimited projects",
+            "feature3": "Access to GitHub repository",
+            "feature4": "Unlimited patch & minor updates",
+            "feature5": "Lifetime access"
+          },
+          "buttonText": "Buy now"
+        },
+        "proYearly": {
+          "name": "Pro",
+          "price": "${price}",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar",
+          "billingCycle": "/year",
+          "billingPeriod": "billed annually",
+          "features": {
+            "feature1": "One developer",
+            "feature2": "Unlimited projects",
+            "feature3": "Access to GitHub repository",
+            "feature4": "Unlimited patch & minor updates",
+            "feature5": "Lifetime access"
+          },
+          "buttonText": "Buy now"
+        },
+        "lifeTimeDeal": {
+          "name": "Lifetime Deal",
+          "price": "${price}",
+          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar",
+          "features": {
+            "feature1": "One developer",
+            "feature2": "Unlimited projects",
+            "feature3": "Access to GitHub repository",
+            "feature4": "Unlimited patch & minor updates",
+            "feature5": "Lifetime access"
+          },
+          "tagline": "Pay once, own it forever",
+          "buttonText": "Buy now"
+        }
+      }
+    },
+    "legal": {
+      "terms": {
+        "linkLabel": "Terms of Service",
+        "title": "Terms of Service",
+        "description": "Ut commodo cupidatat sit aliquip aliquip aliqua aliquip cillum. Labore tempor mollit proident consectetur et cupidatat sunt. Lorem quis et irure excepteur cillum deserunt exercitation proident voluptate adipisicing. Cillum quis dolore cupidatat duis laboris ea ea incididunt id minim est proident tempor."
+      },
+      "privacy": {
+        "linkLabel": "Privacy Policy",
+        "title": "Privacy Policy",
+        "description": "Cillum sint enim excepteur ut deserunt qui nisi in deserunt in. Deserunt aliquip quis aliquip eu quis ex velit velit nostrud sit."
+      }
+    },
+    "otpVerify": {
+      "title": "Verify your email",
+      "description": "We've sent a 6 digit code to {email}. Please enter it below.",
+      "form": {
+        "otp": {
+          "label": "OTP Code",
+          "placeholder": "Enter the OTP code"
+        },
+        "submitButton": "Verify code"
+      },
+      "toast": {
+        "successVerify": {
+          "title": "Code verified",
+          "description": "Your code has been verified"
+        },
+        "successResend": {
+          "title": "Code resent",
+          "description": "A new code has been sent to your email"
+        },
+        "errorVerify": {
+          "title": "Code verification failed"
+        },
+        "errorResend": {
+          "title": "Code resend failed"
+        }
+      },
+      "resendCodeText": "Didn't receive the code?",
+      "resendCodeButton": "Resend code",
+      "codeExpiresIn": "Code expires in {seconds} seconds"
+    },
+    "resetPassword": {
+      "title": "Set up a new password",
+      "description": "Your password must be different from your previous one.",
+      "form": {
+        "password": {
+          "label": "New Password",
+          "placeholder": "Enter your new password",
+          "validationMessage": "Password must be at least 8 characters long"
+        },
+        "confirmPassword": {
+          "label": "Confirm Password",
+          "placeholder": "Confirm your new password",
+          "validationMessage": "Password must be at least 8 characters long"
+        },
+        "matchPasswordValidationMessage": "Passwords must match",
+        "submitButton": "Save new password"
+      },
+      "toast": {
+        "success": {
+          "title": "Password reset",
+          "description": "Your password has been reset"
+        },
+        "error": {
+          "title": "Password reset failed"
+        }
+      }
+    },
+    "forgotPassword": {
+      "title": "Reset Password",
+      "description": "Enter your email and we'll send you instructions to reset your password",
+      "form": {
+        "email": {
+          "label": "Email",
+          "placeholder": "Enter your email"
+        },
+        "submitButton": "Send reset instructions"
+      },
+      "toast": {
+        "success": {
+          "title": "Email sent",
+          "description": "Instructions to reset your password have been sent to your email"
+        },
+        "error": {
+          "title": "Password reset failed"
+        }
+      },
+      "submitButton": "Reset Password"
+    },
+    "login": {
+      "title": "Login",
+      "description": "Let's get you signed in",
+      "orSeparator": "or",
+      "passwordField": {
+        "label": "Password",
+        "placeholder": "Enter your password"
+      },
+      "emailField": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "forgotPassword": "Forgot your password?",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign up",
+      "loginButton": "Login",
+      "demoAdmin": {
+        "title": "Login as demo admin",
+        "description": "Login as a demo admin to be able to test the admin functionalities, like managing users, waitlist, and more.",
+        "actionButtonLabel": "Login"
+      }
+    },
+    "register": {
+      "title": "Sign Up",
+      "description": "Create your account",
+      "orSeparator": "or",
+      "nameField": {
+        "label": "Name",
+        "placeholder": "Enter your name"
+      },
+      "passwordField": {
+        "label": "Password",
+        "placeholder": "Enter your password"
+      },
+      "emailField": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "createButton": "Create account",
+      "alreadyAccount": "Already have an account?",
+      "signIn": "Sign in"
+    },
+    "dashboard": {
+      "title": "Home",
+      "description": "Welcome to your dashboard",
+      "logoutButton": "Sign Out",
+      "logoutSuccess": {
+        "title": "Logged out",
+        "description": "You have been logged out successfully."
+      },
+      "logoutError": {
+        "title": "Error",
+        "description": "Failed to logout"
+      },
+      "userMenu": {
+        "items": {
+          "profile": "Profile",
+          "billing": "Billing",
+          "appearance": "Appearance",
+          "light": "Light",
+          "dark": "Dark",
+          "language": "Language",
+          "english": "English",
+          "german": "German",
+          "logout": "Logout",
+          "upgradePro": "Upgrade to Pro",
+          "documentation": "Documentation",
+          "github": "GitHub Repository"
+        }
+      },
+      "links": {
+        "home": "Home",
+        "admin": "Admin",
+        "settings": "Settings",
+        "feedback": "Feedback",
+        "help": "Help & Support"
+      },
+      "checkoutSuccess": {
+        "title": "Checkout successful",
+        "description": "Your payment was successful. Thank you for your purchase!",
+        "cta": {
+          "title": "Thank you for your order!",
+          "description": "Your order has been successfully placed. Please logout and login again, to see the changes.",
+          "buttonLabel": "More Confetti"
+        }
+      },
+      "settings": {
+        "title": "Account Settings",
+        "description": "Manage your account settings",
+        "updateProfile": {
+          "title": " Personal Information",
+          "description": "Your personal information is not shared with anyone.",
+          "form": {
+            "name": {
+              "label": "Name",
+              "validationMessage": "Name is required"
+            },
+            "avatar": {
+              "label": "Avatar"
+            },
+            "email": {
+              "label": "Email"
+            },
+            "accountId": {
+              "label": "Account ID"
+            },
+            "fullName": {
+              "label": "Full Name"
+            },
+            "submitButton": "Save changes"
+          },
+          "toast": {
+            "success": {
+              "title": "Profile updated",
+              "description": "Your profile has been updated"
+            },
+            "error": {
+              "title": "Profile update failed"
+            }
+          }
+        },
+        "updatePassword": {
+          "title": "Security",
+          "description": "Your credentials are encrypted and stored securely.",
+          "toast": {
+            "successTitle": "Password updated",
+            "successDescription": "Your password has been updated",
+            "errorTitle": "Update password failed"
+          },
+          "form": {
+            "newPassword": {
+              "label": "New Password",
+              "placeholder": "Enter your new password",
+              "validationMessage": "Password must be at least 8 characters long"
+            },
+            "submitButton": "Save changes"
+          }
+        },
+        "linkedAccounts": {
+          "title": "Manage Linked Accounts",
+          "description": "View and manage your linked social accounts.",
+          "noLinkedAccounts": "You don't have any linked accounts.",
+          "unlinkButton": "Unlink",
+          "connectedOn": "Connected on {date}",
+          "toast": {
+            "success": {
+              "unlinkAccountTitle": "Account unlinked"
+            },
+            "error": {
+              "fetchLinkedAccountsTitle": "Failed to fetch linkedAccounts",
+              "unlinkAccountTitle": "Failed to unlink account"
+            }
+          }
+        },
+        "deleteAccount": {
+          "title": "Danger Zone",
+          "description": "Be careful what you do here! This action will delete your account entirely, including all data associated with it.",
+          "deleteButton": "Delete Account",
+          "confirmModal": {
+            "title": "Danger Zone",
+            "description": "Are you sure you want to delete your account? This action cannot be undone."
+          },
+          "toast": {
+            "success": {
+              "title": "Account deleted",
+              "description": "Your account has been deleted"
+            },
+            "error": {
+              "title": "Failed to delete account"
+            }
+          }
+        },
+        "passkeys": {
+          "title": "Manage Passkeys",
+          "description": "View and manage your registered passkeys for passwordless authentication.",
+          "noPasskeys": "You don't have any passkeys yet.",
+          "addButton": "Add Passkey",
+          "deleteButton": "Delete",
+          "createdOn": "Created on {date}",
+          "lastUsed": "Last used: {date}",
+          "neverUsed": "Never used",
+          "deviceInfo": "Device: {device}",
+          "confirmDelete": {
+            "title": "Delete Passkey",
+            "description": "Are you sure you want to delete this passkey? You won't be able to use it to sign in anymore."
+          },
+          "modal": {
+            "title": "Add New Passkey",
+            "description": "Create a new passkey for this device.",
+            "nameLabel": "Passkey Name",
+            "namePlaceholder": "e.g., My iPhone, Work Laptop",
+            "submitButton": "Create Passkey",
+            "cancelButton": "Cancel"
+          },
+          "toast": {
+            "success": {
+              "addTitle": "Passkey created",
+              "addDescription": "Your new passkey has been added successfully",
+              "deleteTitle": "Passkey deleted",
+              "deleteDescription": "The passkey has been removed"
+            },
+            "error": {
+              "fetchTitle": "Failed to fetch passkeys",
+              "addTitle": "Failed to create passkey",
+              "deleteTitle": "Failed to delete passkey"
+            }
+          }
+        },
+        "links": {
+          "profile": "Profile",
+          "billing": "Billing",
+          "security": "Security"
+        }
+      }
+    },
+    "blog": {
+      "title": "Blog",
+      "description": "Read the latest articles from our blog"
+    },
+    "docs": {
+      "tocLinksTitle": "Community",
+      "tocTitle": "Table of Contents"
+    },
+    "changelog": {
+      "title": "Changelog",
+      "description": "Stay up to date with the latest changes and updates to our product."
+    }
+  }
+}
