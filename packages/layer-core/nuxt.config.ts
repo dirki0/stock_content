@@ -10,6 +10,12 @@ export default defineNuxtConfig({
     },
   },
 
+  hub: {
+    blob: true,
+    database: true,
+    kv: true,
+  },
+
   i18n: {
     defaultLocale: 'en',
     detectBrowserLanguage: false,
@@ -26,7 +32,9 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    '@nuxt/ui',
     '@nuxt/eslint',
     '@nuxtjs/i18n',
+    '@nuxthub/core',
   ],
 })

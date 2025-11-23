@@ -1,0 +1,21 @@
+{
+  "name": "layer-emails",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "dev:prepare": "nuxt prepare",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "layer-core": "workspace:*",
+    "site-config": "workspace:*",
+    "nuxt-email-renderer": "^2.1.2"
+  }
+}

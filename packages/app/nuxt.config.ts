@@ -12,6 +12,7 @@ export default defineNuxtConfig({
 
   extends: [
     'layer-core',
+    'layer-emails',
   ],
 
   image: {
@@ -29,7 +30,6 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    '@nuxt/ui',
     '@nuxt/content',
     '@nuxtjs/seo',
     '@nuxt/image',

@@ -5,10 +5,10 @@ import { siteConfig } from 'site-config'
 const navigation = inject<Ref<Array<ContentNavigationItem>>>('navigationDocs')
 
 const { t } = useI18n()
-// const { loggedIn } = useUserSession()
+const { loggedIn } = useAuth()
 const route = useRoute()
 
-// const isDashboardRoute = computed(() => route.path.startsWith('/dashboard'))
+const isDashboardRoute = computed(() => route.path.startsWith('/dashboard'))
 
 const links = computed(() => ([
   {
@@ -75,31 +75,29 @@ const items = computed(() => links.value.map(({ icon, ...link }) => link))
         <UContentSearchButton />
       </UTooltip>
       <UColorModeButton />
-      <!--      <AuthState> -->
-      <!--        <UButton -->
-      <!--          v-if="loggedIn && !isDashboardRoute" -->
-      <!--          to="/dashboard" -->
-      <!--          class="hidden lg:flex" -->
-      <!--        > -->
-      <!--          {{ t('general.dashboard') }} -->
-      <!--        </UButton> -->
-      <!--        <template v-if="!loggedIn"> -->
-      <!--          <UButton -->
-      <!--            to="/auth/login" -->
-      <!--            color="neutral" -->
-      <!--            variant="ghost" -->
-      <!--            class="hidden lg:flex" -->
-      <!--          > -->
-      <!--            {{ $t('general.login') }} -->
-      <!--          </UButton> -->
-      <!--          <UButton -->
-      <!--            to="/auth/register" -->
-      <!--            class="hidden lg:flex" -->
-      <!--          > -->
-      <!--            {{ $t('general.register') }} -->
-      <!--          </UButton> -->
-      <!--        </template> -->
-      <!--      </AuthState> -->
+      <UButton
+        v-if="loggedIn && !isDashboardRoute"
+        to="/dashboard"
+        class="hidden lg:flex"
+      >
+        {{ t('general.dashboard') }}
+      </UButton>
+      <template v-if="!loggedIn">
+        <UButton
+          to="/auth/login"
+          color="neutral"
+          variant="ghost"
+          class="hidden lg:flex"
+        >
+          {{ $t('general.login') }}
+        </UButton>
+        <UButton
+          to="/auth/register"
+          class="hidden lg:flex"
+        >
+          {{ $t('general.register') }}
+        </UButton>
+      </template>
     </template>
 
     <template #body>
@@ -113,26 +111,24 @@ const items = computed(() => links.value.map(({ icon, ...link }) => link))
         class="mt-4 mb-6"
       />
       <div class="flex flex-col space-y-4">
-        <!--        <AuthState> -->
-        <!--          <UButton -->
-        <!--            v-if="loggedIn && !isDashboardRoute" -->
-        <!--            to="/dashboard" -->
-        <!--          > -->
-        <!--            {{ t('general.dashboard') }} -->
-        <!--          </UButton> -->
-        <!--          <template v-if="!loggedIn"> -->
-        <!--            <UButton -->
-        <!--              to="/auth/login" -->
-        <!--              color="neutral" -->
-        <!--              variant="ghost" -->
-        <!--            > -->
-        <!--              {{ $t('general.login') }} -->
-        <!--            </UButton> -->
-        <!--            <UButton to="/auth/register"> -->
-        <!--              {{ $t('general.register') }} -->
-        <!--            </UButton> -->
-        <!--          </template> -->
-        <!--        </AuthState> -->
+        <UButton
+          v-if="loggedIn && !isDashboardRoute"
+          to="/dashboard"
+        >
+          {{ t('general.dashboard') }}
+        </UButton>
+        <template v-if="!loggedIn">
+          <UButton
+            to="/auth/login"
+            color="neutral"
+            variant="ghost"
+          >
+            {{ $t('general.login') }}
+          </UButton>
+          <UButton to="/auth/register">
+            {{ $t('general.register') }}
+          </UButton>
+        </template>
       </div>
       <UContentNavigation
         highlight
