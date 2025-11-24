@@ -3,8 +3,7 @@ import type { FormSubmitEvent } from '@nuxt/ui'
 import { PasskeyRegisterModal } from '#components'
 import * as z from 'zod'
 
-const { register: registerPasskey } = useWebAuthn()
-const { fetch: fetchUserSession } = useUserSession()
+const { client } = useAuth()
 const { showErrorToast, showSuccessToast } = useAppToast()
 const logger = useLogger()
 const { t } = useI18n()
@@ -19,18 +18,21 @@ const description = computed(() => t('pages.register.description'))
 async function handlePasskeyRegister () {
   isLoading.value = true
 
-  try {
-    const email = await modal.open()
-    if (!email) {
-      isLoading.value = false
-      showErrorToast(t('components.auth.toast.passkeyRegisterError.label'), `${t('components.auth.passkey.register.emailRequired')}`)
-      return
-    }
+  const email = await modal.open()
+  if (!email) {
+    isLoading.value = false
+    showErrorToast(t('components.auth.toast.passkeyRegisterError.label'), `${t('components.auth.passkey.register.emailRequired')}`)
+    return
+  }
+  const { error } = await client.passkey.addPasskey({
+    name: email,
+  })
 
-    await registerPasskey({ userName: email })
-
-    await fetchUserSession()
-
+  if (error) {
+    const errorMessage = error.message || t('components.auth.toast.passkeyRegisterError.label')
+    showErrorToast(t('components.auth.toast.passkeyRegisterError.label'), errorMessage)
+  }
+  else {
     showSuccessToast({
       description: t('components.auth.toast.passkeyRegisterSuccess.description'),
       title: t('components.auth.toast.passkeyRegisterSuccess.label'),
@@ -38,13 +40,8 @@ async function handlePasskeyRegister () {
 
     await navigateTo('/dashboard')
   }
-  catch (err: any) {
-    const errorMessage = err.data?.message || t('components.auth.toast.passkeyRegisterError.label')
-    showErrorToast(t('components.auth.toast.passkeyRegisterError.label'), errorMessage)
-  }
-  finally {
-    isLoading.value = false
-  }
+
+  isLoading.value = false
 }
 
 const fields = [{
@@ -99,16 +96,16 @@ type Schema = z.output<typeof schema>
 async function onSubmit (payload: FormSubmitEvent<Schema>) {
   isLoading.value = true
 
-  try {
-    await $fetch('/api/auth/register', { body: payload.data, method: 'POST' })
+  const { data, error } = await client.signUp.email({
+    callbackURL: `/auth/otp/verify?email=${encodeURIComponent(payload.data.email)}&type=SIGNUP`,
+    email: payload.data.email,
+    name: payload.data.name,
+    password: payload.data.password,
+  })
 
-    showSuccessToast({ title: t('components.auth.toast.signupSuccess.label') })
-
-    await navigateTo(`/auth/otp/verify?email=${encodeURIComponent(payload.data.email)}&type=SIGNUP`)
-  }
-  catch (error: any) {
-    if (error.data && error.data.data && error.data.data.name === 'ZodError') {
-      const issues = error.data.data.issues
+  if (error) {
+    if (error && error.data && error.data.name === 'ZodError') {
+      const issues = error.data.issues
         .map((issue: any) => {
           const path = issue.path.join('.')
           return `Invalid ${path}: ${issue.message}`
@@ -118,9 +115,11 @@ async function onSubmit (payload: FormSubmitEvent<Schema>) {
     }
     showErrorToast(t('components.auth.toast.signupError.label'), error)
   }
-  finally {
-    isLoading.value = false
+  else {
+    showSuccessToast({ title: t('components.auth.toast.signupSuccess.label') })
   }
+
+  isLoading.value = false
 }
 
 useSeoMeta({

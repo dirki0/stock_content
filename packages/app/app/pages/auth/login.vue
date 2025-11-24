@@ -25,7 +25,7 @@ async function handlePasskeyAuthenticate () {
 
         isLoading.value = false
       },
-      onSuccess () {
+      async onSuccess () {
         showSuccessToast({
           description: t('components.auth.toast.passkeyLoginSuccess.description'),
           title: t('components.auth.toast.passkeyLoginSuccess.label'),
