@@ -38,4 +38,8 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxthub/core',
   ],
+
+  nitro: {
+    preset: 'cloudflare-worker',
+  },
 })
