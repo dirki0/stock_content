@@ -1,10 +1,9 @@
 import process from 'node:process'
 
+import { D1Dialect } from '@atinux/kysely-d1'
 import { passkey } from '@better-auth/passkey'
 import { betterAuth } from 'better-auth'
-import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { admin, anonymous } from 'better-auth/plugins'
-import * as schema from 'layer-core/server/schema'
 
 let _auth: ReturnType<typeof betterAuth>
 export function serverAuth () {
@@ -16,23 +15,17 @@ export function serverAuth () {
         },
       },
       baseURL: getBaseURL(),
-      database: drizzleAdapter(
-        useDB(),
-        {
-          provider: 'sqlite',
-          schema,
-        },
-      ),
-
+      database: {
+        dialect: new D1Dialect({
+          database: hubDatabase() as any,
+        }),
+        type: 'sqlite',
+      },
       emailAndPassword: {
         enabled: true,
-        requireEmailVerification: true,
+        requireEmailVerification: false,
       },
-      plugins: [
-        anonymous(),
-        admin(),
-        passkey(),
-      ],
+      plugins: [anonymous(), admin(), passkey()],
       secondaryStorage: {
         delete: key => hubKV().del(`_auth:${key}`),
         get: key => hubKV().getItemRaw(`_auth:${key}`),
@@ -56,8 +49,6 @@ export function serverAuth () {
   }
   return _auth
 }
-
-export const auth = serverAuth()!
 
 function getBaseURL () {
   let baseURL = process.env.BETTER_AUTH_URL

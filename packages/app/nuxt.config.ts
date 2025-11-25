@@ -3,17 +3,13 @@ import { siteConfig } from 'site-config'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-
   css: ['~/assets/css/main.css'],
 
   devServer: {
     port: 9009,
   },
 
-  extends: [
-    'layer-core',
-    'layer-emails',
-  ],
+  extends: ['layer-core', 'layer-emails'],
 
   image: {
     domains: ['demo.nuxtstarterkit.com'],
@@ -29,11 +25,15 @@ export default defineNuxtConfig({
     // },
   },
 
-  modules: [
-    '@nuxt/content',
-    '@nuxtjs/seo',
-    '@nuxt/image',
-  ],
+  modules: ['@nuxt/content', '@nuxtjs/seo', '@nuxt/image'],
+
+  nitro: {
+    prerender: {
+      autoSubfolderIndex: false,
+      routes: [],
+    },
+    preset: 'cloudflare-pages',
+  },
 
   ogImage: {
     enabled: true,
@@ -41,9 +41,7 @@ export default defineNuxtConfig({
   },
 
   robots: {
-    disallow: [
-      '/admin',
-    ],
+    disallow: ['/admin'],
   },
 
   schemaOrg: {

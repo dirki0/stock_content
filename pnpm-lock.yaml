@@ -10,6 +10,9 @@ importers:
 
   packages/app:
     dependencies:
+      '@atinux/kysely-d1':
+        specifier: ^0.3.1
+        version: 0.3.1(kysely@0.28.8)
       '@better-auth/passkey':
         specifier: ^1.4.1
         version: 1.4.1(@better-auth/core@1.4.1(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.18)(better-call@1.1.0)(jose@6.1.2)(kysely@0.28.8)(nanostores@1.1.0))(@better-auth/utils@0.3.0)(@better-fetch/fetch@1.1.18)(better-auth@1.4.1(vue@3.5.24(typescript@5.9.3)))(better-call@1.1.0)(nanostores@1.1.0)
@@ -198,6 +201,11 @@ packages:
     engines: {node: '>= 20'}
     peerDependencies:
       '@types/json-schema': ^7.0.15
+
+  '@atinux/kysely-d1@0.3.1':
+    resolution: {integrity: sha512-QyPnZLPSb2qksGsORhYtODi3qPASzUfON6tgaCGhpfb71h6TPSd0v5msjdptCcwRMnWi+bxqHkTufJiaiDjzfw==}
+    peerDependencies:
+      kysely: '*'
 
   '@babel/code-frame@7.27.1':
     resolution: {integrity: sha512-cjQ7ZlQ0Mv3b47hABuTevyTuYN4i+loJKGeV9flcCgIK37cCXRh+L1bd3iBHlynerhQ7BhCkn2BPbQUL+rGqFg==}
@@ -7348,6 +7356,10 @@ snapshots:
     dependencies:
       '@types/json-schema': 7.0.15
       js-yaml: 4.1.1
+
+  '@atinux/kysely-d1@0.3.1(kysely@0.28.8)':
+    dependencies:
+      kysely: 0.28.8
 
   '@babel/code-frame@7.27.1':
     dependencies:

@@ -10,11 +10,10 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "dev:prepare": "nuxt prepare",
-    "typecheck": "nuxt typecheck",
-    "auth:schema": "npx @better-auth/cli generate --config server/utils/auth.ts --output ../layer-core/server/schema/auth.ts -y",
-    "db:generate": "drizzle-kit generate"
+    "typecheck": "nuxt typecheck"
   },
   "dependencies": {
+    "@atinux/kysely-d1": "^0.3.1",
     "@better-auth/passkey": "^1.4.1",
     "@nuxt/content": "^3.8.2",
     "@nuxt/image": "2.0.0",

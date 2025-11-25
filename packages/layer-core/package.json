@@ -11,15 +11,16 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "dev:prepare": "nuxt prepare",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "db:generate": "drizzle-kit generate"
   },
   "devDependencies": {
-    "drizzle-orm": "^0.44.7",
-    "drizzle-kit": "^0.31.7",
-    "@nuxt/ui": "^4.2.1",
     "@nuxt/eslint": "1.10.0",
+    "@nuxt/ui": "^4.2.1",
     "@nuxthub/core": "^0.9.0",
     "@nuxtjs/i18n": "10.2.1",
+    "drizzle-kit": "^0.31.7",
+    "drizzle-orm": "^0.44.7",
     "eslint": "^9.39.1",
     "eslint-config": "workspace:*",
     "nuxt": "^4.2.1",
