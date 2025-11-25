@@ -14,7 +14,6 @@ export default defineNuxtConfig({
     blob: true,
     database: true,
     kv: true,
-    workers: true,
   },
 
   i18n: {
@@ -33,9 +32,9 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    '@nuxthub/core',
     '@nuxt/ui',
     '@nuxt/eslint',
     '@nuxtjs/i18n',
-    '@nuxthub/core',
   ],
 })
