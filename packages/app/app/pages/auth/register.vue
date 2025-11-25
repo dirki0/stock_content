@@ -24,22 +24,24 @@ async function handlePasskeyRegister () {
     showErrorToast(t('components.auth.toast.passkeyRegisterError.label'), `${t('components.auth.passkey.register.emailRequired')}`)
     return
   }
-  const { error } = await client.passkey.addPasskey({
-    name: email,
-  })
 
-  if (error) {
-    const errorMessage = error.message || t('components.auth.toast.passkeyRegisterError.label')
-    showErrorToast(t('components.auth.toast.passkeyRegisterError.label'), errorMessage)
-  }
-  else {
-    showSuccessToast({
-      description: t('components.auth.toast.passkeyRegisterSuccess.description'),
-      title: t('components.auth.toast.passkeyRegisterSuccess.label'),
-    })
-
-    await navigateTo('/dashboard')
-  }
+  // FIXME: Passkey registration is currently disabled
+  // const { error } = await client.passkey.addPasskey({
+  //   name: email,
+  // })
+  //
+  // if (error) {
+  //   const errorMessage = error.message || t('components.auth.toast.passkeyRegisterError.label')
+  //   showErrorToast(t('components.auth.toast.passkeyRegisterError.label'), errorMessage)
+  // }
+  // else {
+  //   showSuccessToast({
+  //     description: t('components.auth.toast.passkeyRegisterSuccess.description'),
+  //     title: t('components.auth.toast.passkeyRegisterSuccess.label'),
+  //   })
+  //
+  //   await navigateTo('/dashboard')
+  // }
 
   isLoading.value = false
 }

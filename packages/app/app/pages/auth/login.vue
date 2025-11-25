@@ -16,27 +16,28 @@ async function handlePasskeyAuthenticate () {
   isLoading.value = true
   passkeyError.value = ''
 
-  await client.signIn.passkey({
-    autoFill: true,
-    fetchOptions: {
-      onError (context) {
-        passkeyError.value = context.error.message || 'Failed to authenticate'
-        showErrorToast(t('components.auth.toast.passkeyLoginError.label'), passkeyError.value)
-
-        isLoading.value = false
-      },
-      async onSuccess () {
-        showSuccessToast({
-          description: t('components.auth.toast.passkeyLoginSuccess.description'),
-          title: t('components.auth.toast.passkeyLoginSuccess.label'),
-        })
-
-        await navigateTo('/dashboard')
-
-        isLoading.value = false
-      },
-    },
-  })
+  // FIXME: Passkey authentication is currently disabled
+  // await client.signIn.passkey({
+  //   autoFill: true,
+  //   fetchOptions: {
+  //     onError (context) {
+  //       passkeyError.value = context.error.message || 'Failed to authenticate'
+  //       showErrorToast(t('components.auth.toast.passkeyLoginError.label'), passkeyError.value)
+  //
+  //       isLoading.value = false
+  //     },
+  //     async onSuccess () {
+  //       showSuccessToast({
+  //         description: t('components.auth.toast.passkeyLoginSuccess.description'),
+  //         title: t('components.auth.toast.passkeyLoginSuccess.label'),
+  //       })
+  //
+  //       await navigateTo('/dashboard')
+  //
+  //       isLoading.value = false
+  //     },
+  //   },
+  // })
 }
 
 const fields = [{

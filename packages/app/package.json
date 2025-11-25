@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@atinux/kysely-d1": "^0.3.1",
-    "@better-auth/passkey": "^1.4.1",
     "@nuxt/content": "^3.8.2",
     "@nuxt/image": "2.0.0",
     "@nuxtjs/seo": "^3.2.2",
@@ -24,7 +23,6 @@
     "layer-core": "workspace:*",
     "layer-emails": "workspace:*",
     "nuxt": "^4.2.1",
-    "reflect-metadata": "^0.2.2",
     "site-config": "workspace:*",
     "typescript": "^5.9.3",
     "vue": "^3.5.24",

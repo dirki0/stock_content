@@ -1,4 +1,3 @@
-import { passkeyClient } from '@better-auth/passkey/client'
 import { createAuthClient } from 'better-auth/client'
 import type {
   ClientOptions,
@@ -23,7 +22,6 @@ export function useAuth () {
       headers,
     },
     plugins: [
-      passkeyClient(),
     ],
   })
 

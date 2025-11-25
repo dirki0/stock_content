@@ -1,7 +1,6 @@
 import process from 'node:process'
 
 import { D1Dialect } from '@atinux/kysely-d1'
-import { passkey } from '@better-auth/passkey'
 import { betterAuth } from 'better-auth'
 import { admin, anonymous } from 'better-auth/plugins'
 
@@ -25,7 +24,7 @@ export function serverAuth () {
         enabled: true,
         requireEmailVerification: false,
       },
-      plugins: [anonymous(), admin(), passkey()],
+      plugins: [anonymous(), admin()],
       secondaryStorage: {
         delete: key => hubKV().del(`_auth:${key}`),
         get: key => hubKV().getItemRaw(`_auth:${key}`),
