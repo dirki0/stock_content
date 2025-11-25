@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     blob: true,
     database: true,
     kv: true,
+    workers: true,
   },
 
   i18n: {
