@@ -28,14 +28,6 @@ export default defineNuxtConfig({
   modules: ['@nuxt/content', '@nuxtjs/seo', '@nuxt/image'],
 
   nitro: {
-    imports: {
-      presets: [
-        {
-          from: 'reflect-metadata',
-          imports: ['*'],
-        },
-      ],
-    },
     prerender: {
       autoSubfolderIndex: false,
       routes: [],

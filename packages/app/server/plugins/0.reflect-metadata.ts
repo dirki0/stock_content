@@ -2,6 +2,6 @@
 // that depends on it (e.g., tsyringe used by better-auth passkey plugin)
 import 'reflect-metadata'
 
-export default defineEventHandler(() => {
-  // no need to do anything here
+export default defineNitroPlugin(() => {
+  // Polyfill is loaded via the import above
 })
