@@ -26,10 +26,9 @@ jobs:
 
       - name: Ensure NuxtHub module is installed
         run: pnpx nuxthub@latest ensure
-        working-directory: packages/app
 
       - name: Build & Deploy to NuxtHub
         uses: nuxt-hub/action@v2
         with:
           project-key: ${{ secrets.NUXT_HUB_PROJECT_KEY }}
-          working-directory: packages/app
+          directory: packages/app
