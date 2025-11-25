@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/packages/app/nuxt.config.ts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/packages/app/nuxt.config.ts" />
+              <option name="originalContent" value="import { defineOrganization } from 'nuxt-schema-org/schema'&#10;import { siteConfig } from 'site-config'&#10;&#10;// https://nuxt.com/docs/api/configuration/nuxt-config&#10;export default defineNuxtConfig({&#10;  css: ['~/assets/css/main.css'],&#10;&#10;  devServer: {&#10;    port: 9009,&#10;  },&#10;&#10;  extends: ['layer-core', 'layer-emails'],&#10;&#10;  image: {&#10;    domains: ['demo.nuxtstarterkit.com'],&#10;    provider: 'ipx',&#10;    // FIXME:&#10;    // providers: {&#10;    //   customCloudflare: {&#10;    //     options: {&#10;    //       prodSiteURL: siteConfig.url,&#10;    //     },&#10;    //     provider: '~/providers/customCloudflare.ts',&#10;    //   },&#10;    // },&#10;  },&#10;&#10;  modules: ['@nuxt/content', '@nuxtjs/seo', '@nuxt/image'],&#10;&#10;  nitro: {&#10;    prerender: {&#10;      autoSubfolderIndex: false,&#10;      routes: [],&#10;    },&#10;    preset: 'cloudflare-pages',&#10;  },&#10;&#10;  ogImage: {&#10;    enabled: true,&#10;    zeroRuntime: true, // see https://nuxtseo.com/docs/og-image/guides/zero-runtime&#10;  },&#10;&#10;  robots: {&#10;    disallow: ['/admin'],&#10;  },&#10;&#10;  schemaOrg: {&#10;    identity: defineOrganization({&#10;      logo: siteConfig.logoUrl,&#10;      name: siteConfig.name,&#10;    }),&#10;  },&#10;&#10;  site: {&#10;    defaultLocale: 'en-US',&#10;    description: siteConfig.description,&#10;    name: siteConfig.name,&#10;    url: siteConfig.url,&#10;  },&#10;&#10;  sitemap: { exclude: ['/admin/**'] },&#10;})&#10;" />
+              <option name="updatedContent" value="import { defineOrganization } from 'nuxt-schema-org/schema'&#10;import { siteConfig } from 'site-config'&#10;&#10;// https://nuxt.com/docs/api/configuration/nuxt-config&#10;export default defineNuxtConfig({&#10;  css: ['~/assets/css/main.css'],&#10;&#10;  devServer: {&#10;    port: 9009,&#10;  },&#10;&#10;  extends: ['layer-core', 'layer-emails'],&#10;&#10;  image: {&#10;    domains: ['demo.nuxtstarterkit.com'],&#10;    provider: 'ipx',&#10;    // FIXME:&#10;    // providers: {&#10;    //   customCloudflare: {&#10;    //     options: {&#10;    //       prodSiteURL: siteConfig.url,&#10;    //     },&#10;    //     provider: '~/providers/customCloudflare.ts',&#10;    //   },&#10;    // },&#10;  },&#10;&#10;  modules: ['@nuxt/content', '@nuxtjs/seo', '@nuxt/image'],&#10;&#10;  nitro: {&#10;    imports: {&#10;      presets: [&#10;        {&#10;          from: 'reflect-metadata',&#10;          imports: ['*'],&#10;        },&#10;      ],&#10;    },&#10;    prerender: {&#10;      autoSubfolderIndex: false,&#10;      routes: [],&#10;    },&#10;    preset: 'cloudflare-pages',&#10;  },&#10;&#10;  ogImage: {&#10;    enabled: true,&#10;    zeroRuntime: true, // see https://nuxtseo.com/docs/og-image/guides/zero-runtime&#10;  },&#10;&#10;  robots: {&#10;    disallow: ['/admin'],&#10;  },&#10;&#10;  schemaOrg: {&#10;    identity: defineOrganization({&#10;      logo: siteConfig.logoUrl,&#10;      name: siteConfig.name,&#10;    }),&#10;  },&#10;&#10;  site: {&#10;    defaultLocale: 'en-US',&#10;    description: siteConfig.description,&#10;    name: siteConfig.name,&#10;    url: siteConfig.url,&#10;  },&#10;&#10;  sitemap: { exclude: ['/admin/**'] },&#10;})&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/packages/app/server/plugins/0.reflect-metadata.ts">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/packages/app/server/plugins/0.reflect-metadata.ts" />
+              <option name="updatedContent" value="import 'reflect-metadata'&#10;&#10;export default defineNitroPlugin(() =&gt; {&#10;  // This plugin ensures reflect-metadata is imported before any other code&#10;  // that depends on it (e.g., tsyringe used by better-auth passkey plugin)&#10;})&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
