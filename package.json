@@ -6,7 +6,7 @@
   "scripts": {
     "prepare": "pnpm run -r dev:prepare",
     "dev:app": "pnpm --filter app dev",
-    "build": "cd packages/app && pnpm run build",
+    "build": "pnpm --filter app build",
     "lint": "pnpm run -r lint",
     "lint:fix": "pnpm run -r lint:fix"
   },
