@@ -1,17 +1,19 @@
 {
-  "name": "nuxt-layers-typecheck",
+  "name": "nuxtstarterkit-v2",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "prepare": "pnpm run -r dev:prepare",
-    "dev:app": "pnpm --filter app dev",
-    "build": "pnpm --filter app build",
-    "lint": "pnpm run -r lint",
-    "lint:fix": "pnpm run -r lint:fix"
+    "dev:web": "turbo run dev --filter web",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.23.0"
+  "packageManager": "pnpm@10.24.0",
+  "devDependencies": {
+    "turbo": "^2.6.1"
+  }
 }
