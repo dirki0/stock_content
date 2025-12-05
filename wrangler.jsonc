@@ -6,7 +6,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
 
   "name": "nuxtstarterkit-v2",
-  "main": ".apps/web/dist/server/index.mjs",
+  "main": "apps/web/dist/server/index.mjs",
   "compatibility_date": "2025-10-30",
   "compatibility_flags": ["nodejs_compat"],
 
@@ -15,7 +15,7 @@
    */
   "assets": {
     "binding": "ASSETS",
-    "directory": "./apps/web/dist/public/"
+    "directory": "apps/web/dist/public/"
   },
 
   /**
@@ -34,7 +34,7 @@
       "binding": "DB",
       "database_name": "nuxtstarterkit-v2",
       "database_id": "4824b912-0f88-4e77-a504-00fc1344de9e",
-      "migrations_dir": "./apps/web/server/database/migrations"
+      "migrations_dir": "apps/web/server/database/migrations"
     }
   ],
 
