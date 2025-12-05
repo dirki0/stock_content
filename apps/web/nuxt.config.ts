@@ -32,7 +32,6 @@ export default defineNuxtConfig({
       autoSubfolderIndex: false,
       routes: [],
     },
-    preset: 'cloudflare-pages',
   },
 
   ogImage: {
