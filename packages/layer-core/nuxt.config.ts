@@ -33,7 +33,6 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    '@nuxthub/core',
     '@nuxt/ui',
     '@nuxt/eslint',
     '@nuxtjs/i18n',

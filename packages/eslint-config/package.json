@@ -8,6 +8,6 @@
     "eslint": "*"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^6.2.0"
+    "@antfu/eslint-config": "^6.7.2"
   }
 }

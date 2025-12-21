@@ -13,20 +13,24 @@
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
-    "@atinux/kysely-d1": "^0.3.1",
-    "@nuxt/content": "^3.8.2",
-    "@nuxt/image": "2.0.0",
-    "@nuxtjs/seo": "^3.2.2",
-    "better-auth": "^1.4.3",
-    "better-sqlite3": "^12.4.6",
+    "better-auth": "^1.4.7",
+    "drizzle-orm": "^0.44.7",
+    "pg": "^8.16.3",
+    "@nuxt/content": "^3.9.0",
+    "@nuxt/image": "^2.0.0",
+    "@nuxtjs/seo": "^3.3.0",
     "eslint-config": "workspace:*",
     "layer-core": "workspace:*",
     "layer-emails": "workspace:*",
-    "nuxt": "^4.2.1",
+    "nuxt": "^4.2.2",
     "site-config": "workspace:*",
     "typescript": "^5.9.3",
-    "vue": "^3.5.25",
-    "vue-router": "^4.6.3",
-    "vue-tsc": "^3.1.5"
+    "vue": "^3.5.26",
+    "vue-router": "^4.6.4",
+    "vue-tsc": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.16.0",
+    "drizzle-kit": "^0.31.7"
   }
 }
