@@ -20,7 +20,7 @@ const docsSchema = z.object({
 const blogSchema = z.object({
   authors: z.array(
     z.object({
-      avatar: z.object({ src: z.string().nonempty().editor({ input: 'media' }) }),
+      avatar: z.object({ src: z.string().nonempty() }),
       name: z.string().nonempty(),
       to: z.string().nonempty(),
     }),

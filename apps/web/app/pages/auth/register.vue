@@ -3,7 +3,7 @@ import type { FormSubmitEvent } from '@nuxt/ui'
 import { PasskeyRegisterModal } from '#components'
 import * as z from 'zod'
 
-const { client } = useAuth()
+const auth = useAuth()
 const { showErrorToast, showSuccessToast } = useAppToast()
 const logger = useLogger()
 const { t } = useI18n()
@@ -98,23 +98,25 @@ type Schema = z.output<typeof schema>
 async function onSubmit (payload: FormSubmitEvent<Schema>) {
   isLoading.value = true
 
-  const { data, error } = await client.signUp.email({
+  const { data, error } = await auth.signUp.email({
     callbackURL: `/auth/otp/verify?email=${encodeURIComponent(payload.data.email)}&type=SIGNUP`,
     email: payload.data.email,
     name: payload.data.name,
     password: payload.data.password,
+    polarCustomerId: '', // FIXME:  Integrate Polar customer ID
   })
 
   if (error) {
-    if (error && error.data && error.data.name === 'ZodError') {
-      const issues = error.data.issues
-        .map((issue: any) => {
-          const path = issue.path.join('.')
-          return `Invalid ${path}: ${issue.message}`
-        })
-        .join('\n')
-      logger.error(issues)
-    }
+    // FIXME: Detailed Zod error handling
+    // if (error && error.data && error.data.name === 'ZodError') {
+    //   const issues = error.data.issues
+    //     .map((issue: any) => {
+    //       const path = issue.path.join('.')
+    //       return `Invalid ${path}: ${issue.message}`
+    //     })
+    //     .join('\n')
+    //   logger.error(issues)
+    // }
     showErrorToast(t('components.auth.toast.signupError.label'), error)
   }
   else {

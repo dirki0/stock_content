@@ -19,10 +19,13 @@
     "@nuxtjs/i18n": "10.2.1",
     "eslint": "^9.39.2",
     "eslint-config": "workspace:*",
-    "nuxt": "^4.2.2",
-    "tsx": "^4.21.0",
-    "typescript": "^5.9.3",
-    "vue": "^3.5.26",
-    "vue-tsc": "^3.2.0"
+    "nuxt": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vue": "catalog:",
+    "vue-tsc": "catalog:"
+  },
+  "dependencies": {
+    "zod": "catalog:"
   }
 }

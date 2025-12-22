@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev:web": "turbo run dev --filter web",
+    "dev:prepare": "turbo run dev:prepare",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "lint:fix": "turbo run lint:fix"
