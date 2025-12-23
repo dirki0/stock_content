@@ -2,7 +2,7 @@ import { defineConfig } from 'drizzle-kit'
 
 export default defineConfig({
   dbCredentials: {
-    url: process.env.DATABASE_URL!,
+    url: process.env.NUXT_PRIVATE_DATABASE_URL!,
   },
   dialect: 'postgresql',
   out: './server/db/migrations',

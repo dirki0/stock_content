@@ -2,11 +2,9 @@ import { checkout, polar, portal, usage, webhooks } from '@polar-sh/better-auth'
 import { Polar } from '@polar-sh/sdk'
 
 function createPolarClient () {
-  const runtimeConfig = useRuntimeConfig()
-
   return new Polar({
-    accessToken: runtimeConfig.polarAccessToken,
-    server: runtimeConfig.polarServer as 'production' | 'sandbox',
+    accessToken: process.env.POLAR_ACCESS_TOKEN!,
+    server: process.env.POLAR_SERVER as 'production' | 'sandbox',
   })
 }
 

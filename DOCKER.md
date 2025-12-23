@@ -21,7 +21,7 @@ This guide will help you set up and run the application using Docker and Docker 
    ```env
    BETTER_AUTH_SECRET=your-secret-key-here
    BETTER_AUTH_URL=http://localhost:3000
-   DATABASE_URL=postgresql://postgres:postgres@postgres:5432/nuxtstarterkit
+   NUXT_PRIVATE_DATABASE_URL=postgresql://postgres:postgres@postgres:5432/nuxtstarterkit
    ```
 
    > **Important:** Generate a secure random string for `BETTER_AUTH_SECRET` in production.
@@ -158,9 +158,9 @@ services:
 ```
 
 ### Database connection issues
-Ensure the DATABASE_URL matches the PostgreSQL service configuration:
+Ensure the NUXT_PRIVATE_DATABASE_URL matches the PostgreSQL service configuration:
 ```
-DATABASE_URL=postgresql://postgres:postgres@postgres:5432/nuxtstarterkit
+NUXT_PRIVATE_DATABASE_URL=postgresql://postgres:postgres@postgres:5432/nuxtstarterkit
 ```
 
 ### Build failures

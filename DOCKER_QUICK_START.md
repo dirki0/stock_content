@@ -52,5 +52,5 @@ See [DOCKER.md](./DOCKER.md) for complete documentation.
 Copy `.env.example` to `.env` and update:
 - `BETTER_AUTH_SECRET` - Generate a secure random string
 - `BETTER_AUTH_URL` - Your app URL (default: http://localhost:3000)
-- `DATABASE_URL` - Auto-configured for Docker (postgresql://postgres:postgres@postgres:5432/nuxtstarterkit)
+- `NUXT_PRIVATE_DATABASE_URL` - Auto-configured for Docker (postgresql://postgres:postgres@postgres:5432/nuxtstarterkit)
 

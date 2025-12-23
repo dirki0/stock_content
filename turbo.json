@@ -14,5 +14,9 @@
     "dev:prepare": {
       "outputs": []
     }
-  }
+  },
+  "globalEnv": [
+    "POLAR_ACCESS_TOKEN",
+    "POLAR_SERVER"
+  ]
 }
