@@ -84,7 +84,7 @@ const items = computed(() => links.value.map(({ icon, ...link }) => link))
       </UButton>
       <template v-if="!loggedIn">
         <UButton
-          to="/auth/login"
+          to="/login"
           color="neutral"
           variant="ghost"
           class="hidden lg:flex"
@@ -92,7 +92,7 @@ const items = computed(() => links.value.map(({ icon, ...link }) => link))
           {{ $t('general.login') }}
         </UButton>
         <UButton
-          to="/auth/register"
+          to="/signup"
           class="hidden lg:flex"
         >
           {{ $t('general.register') }}
@@ -125,7 +125,7 @@ const items = computed(() => links.value.map(({ icon, ...link }) => link))
           >
             {{ $t('general.login') }}
           </UButton>
-          <UButton to="/auth/register">
+          <UButton to="/signup">
             {{ $t('general.register') }}
           </UButton>
         </template>

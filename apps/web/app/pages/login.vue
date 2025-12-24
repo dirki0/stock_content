@@ -111,6 +111,12 @@ useSeoMeta({
 })
 
 defineOgImageComponent('OgImageTemplate')
+
+definePageMeta({
+  auth: {
+    only: 'guest',
+  },
+})
 </script>
 
 <template>
@@ -145,7 +151,7 @@ defineOgImageComponent('OgImageTemplate')
       >
         <template #description>
           Don't have an account? <ULink
-            to="/auth/register"
+            to="/signup"
             class="text-(--ui-primary) font-medium"
           >
             {{ $t('pages.login.signUp') }}

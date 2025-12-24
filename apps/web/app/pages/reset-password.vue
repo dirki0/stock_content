@@ -56,7 +56,9 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
 }
 
 definePageMeta({
-  middleware: 'reset-password',
+  auth: {
+    only: 'guest',
+  },
 })
 
 useSeoMeta({

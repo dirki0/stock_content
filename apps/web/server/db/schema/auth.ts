@@ -26,6 +26,22 @@ export const user = pgTable('user', {
     .notNull(),
 })
 
+export const session = pgTable('session', {
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  expiresAt: timestamp('expires_at').notNull(),
+  id: uuid('id').primaryKey(),
+  ipAddress: text('ip_address'),
+  token: text('token').notNull().unique(),
+  updatedAt: timestamp('updated_at')
+    .defaultNow()
+    .$onUpdate(() => /* @__PURE__ */ new Date())
+    .notNull(),
+  userAgent: text('user_agent'),
+  userId: uuid('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+})
+
 export const account = pgTable('account', {
   accessToken: text('access_token'),
   accessTokenExpiresAt: timestamp('access_token_expires_at'),

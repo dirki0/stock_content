@@ -68,6 +68,7 @@ function getFeatures (feature: HeroSectionFeature) {
 }
 
 definePageMeta({
+  auth: false,
   layout: 'landing',
 })
 

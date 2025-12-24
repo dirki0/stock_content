@@ -132,6 +132,12 @@ useSeoMeta({
 })
 
 defineOgImageComponent('OgImageTemplate')
+
+definePageMeta({
+  auth: {
+    only: 'guest',
+  },
+})
 </script>
 
 <template>
