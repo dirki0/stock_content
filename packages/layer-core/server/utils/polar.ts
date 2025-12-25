@@ -8,7 +8,7 @@ function createPolarClient () {
   })
 }
 
-export async function ensurePolarCustomer (user: any) { // FIXME: User statt any
+export async function ensurePolarCustomer (user: User) {
   const client = createPolarClient()
   const { result: existingCustomers } = await client.customers.list({ email: user.email })
   const existingCustomer = existingCustomers.items[0]

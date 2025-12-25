@@ -30,7 +30,7 @@ export function useAuth () {
   })
 
   const session = useState<InferSessionFromClient<ClientOptions> | null>('auth:session', () => null)
-  const user = useState<any | null>('auth:user', () => null) // FIXME: type USER
+  const user = useState<null | User>('auth:user', () => null)
   const polarState = useState<CustomerState | null>('auth:polarState', () => null)
   const sessionFetching = import.meta.server ? ref(false) : useState('auth:sessionFetching', () => false)
 

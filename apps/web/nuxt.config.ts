@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     port: 9009,
   },
 
-  extends: ['layer-emails'],
+  extends: ['layer-emails', 'layer-dashboard'],
 
   image: {
     domains: ['demo.nuxtstarterkit.com'],

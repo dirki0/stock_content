@@ -10,24 +10,17 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "dev:prepare": "nuxt prepare",
-    "typecheck": "nuxt typecheck",
-    "auth:schema": "npx @better-auth/cli generate --config server/utils/auth.ts --output server/db/schema/auth.ts -y",
-    "db:generate": "drizzle-kit generate --config ./server/db/drizzle.config.ts",
-    "db:migrate": "drizzle-kit migrate --config ./server/db/drizzle.config.ts"
+    "typecheck": "nuxt typecheck"
   },
   "dependencies": {
-    "@nuxt/content": "^3.9.0",
+    "@nuxt/content": "^3.10.0",
     "@nuxt/image": "^2.0.0",
     "@nuxtjs/seo": "^3.3.0",
-    "@polar-sh/better-auth": "^1.6.3",
-    "@polar-sh/sdk": "^0.42.1",
-    "better-auth": "^1.4.9",
-    "drizzle-orm": "^0.45.1",
     "eslint-config": "workspace:*",
     "layer-core": "workspace:*",
+    "layer-dashboard": "workspace:*",
     "layer-emails": "workspace:*",
     "nuxt": "catalog:",
-    "pg": "^8.16.3",
     "site-config": "workspace:*",
     "tsx": "catalog:",
     "typescript": "catalog:",
@@ -37,8 +30,6 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.2.82",
-    "@types/pg": "^8.16.0",
-    "drizzle-kit": "^0.31.8"
+    "@iconify-json/lucide": "^1.2.82"
   }
 }

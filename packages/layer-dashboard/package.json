@@ -1,0 +1,28 @@
+{
+  "name": "layer-dashboard",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "dev:prepare": "nuxt prepare",
+    "typecheck": "nuxt typecheck"
+  },
+  "devDependencies": {
+    "layer-core": "workspace:*",
+    "nuxt": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:",
+    "vue": "catalog:",
+    "vue-tsc": "catalog:"
+  },
+  "dependencies": {
+    "@unovis/ts": "^1.6.2",
+    "@unovis/vue": "^1.6.2"
+  }
+}

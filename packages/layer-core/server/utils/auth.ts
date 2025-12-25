@@ -160,5 +160,5 @@ export async function requireAuth (event: H3Event) {
   }
   // Save the session to the event context for later use
   event.context.user = session.user
-  return session.user as any // FIXME: User
+  return session.user as User
 }

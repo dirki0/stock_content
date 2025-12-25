@@ -10,13 +10,6 @@ export default defineNuxtConfig({
     },
   },
 
-  hub: {
-    blob: true,
-    database: true,
-    kv: true,
-    workers: true,
-  },
-
   i18n: {
     defaultLocale: 'en',
     detectBrowserLanguage: false,
@@ -36,5 +29,6 @@ export default defineNuxtConfig({
     '@nuxt/ui',
     '@nuxt/eslint',
     '@nuxtjs/i18n',
+    '@vueuse/nuxt',
   ],
 })

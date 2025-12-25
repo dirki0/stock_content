@@ -11,21 +11,33 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "dev:prepare": "nuxt prepare",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "auth:schema": "npx @better-auth/cli generate --config server/utils/auth.ts --output server/db/schema/auth.ts -y",
+    "db:generate": "drizzle-kit generate --config ./server/db/drizzle.config.ts",
+    "db:migrate": "drizzle-kit migrate --config ./server/db/drizzle.config.ts"
   },
-  "devDependencies": {
+  "dependencies": {
     "@nuxt/eslint": "1.10.0",
     "@nuxt/ui": "^4.3.0",
     "@nuxtjs/i18n": "10.2.1",
-    "eslint": "^9.39.2",
-    "eslint-config": "workspace:*",
+    "@polar-sh/better-auth": "^1.6.3",
+    "@polar-sh/sdk": "^0.42.1",
+    "better-auth": "^1.4.9",
+    "drizzle-orm": "^0.45.1",
+    "@vueuse/core": "^14.1.0",
+    "@vueuse/nuxt": "^14.1.0",
+    "zod": "catalog:",
     "nuxt": "catalog:",
+    "pg": "^8.16.3",
     "tsx": "catalog:",
     "typescript": "catalog:",
     "vue": "catalog:",
     "vue-tsc": "catalog:"
   },
-  "dependencies": {
-    "zod": "catalog:"
+  "devDependencies": {
+    "eslint": "^9.39.2",
+    "eslint-config": "workspace:*",
+    "@types/pg": "^8.16.0",
+    "drizzle-kit": "^0.31.8"
   }
 }
