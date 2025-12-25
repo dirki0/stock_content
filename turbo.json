@@ -13,6 +13,13 @@
     },
     "dev:prepare": {
       "outputs": []
+    },
+    "transit": {
+      "dependsOn": ["^transit"]
+    },
+    "typecheck": {
+      "dependsOn": ["transit"],
+      "outputs": []
     }
   },
   "globalEnv": [

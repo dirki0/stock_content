@@ -88,3 +88,18 @@ export const subscription = pgTable('subscription', {
   trialEnd: timestamp('trial_end'),
   trialStart: timestamp('trial_start'),
 })
+
+export const passkey = pgTable('passkey', {
+  backedUp: boolean('backed_up').notNull(),
+  counter: integer('counter').notNull(),
+  createdAt: timestamp('created_at').notNull(),
+  deviceType: text('device_type').notNull(),
+  id: uuid('id').primaryKey(),
+  name: text('name'),
+  publicKey: text('public_key').notNull(),
+  transports: text('transports'),
+  userId: uuid('user_id')
+    .notNull()
+    .references(() => user.id, { onDelete: 'cascade' }),
+  webauthnUserID: text('webauthn_user_id').notNull(),
+})

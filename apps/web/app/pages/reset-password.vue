@@ -8,6 +8,7 @@ const { token } = route.query
 const { showErrorToast, showSuccessToast } = useAppToast()
 const logger = useLogger()
 const { t } = useI18n()
+const auth = useAuth()
 
 const title = computed(() => t('pages.resetPassword.title'))
 const description = computed(() => t('pages.resetPassword.description'))
@@ -33,12 +34,16 @@ type Schema = z.output<typeof schema>
 async function onSubmit (event: FormSubmitEvent<Schema>) {
   isLoading.value = true
 
-  try {
-    await $fetch('/api/auth/reset-password', {
-      body: { code: token, password: event.data.password },
-      method: 'PATCH',
-    })
+  const { error } = await auth.client.resetPassword({
+    newPassword: event.data.password,
+    token: token as string,
+  })
 
+  if (error) {
+    logger.error('Reset password failed', error)
+    showErrorToast(t('pages.resetPassword.toast.error.title'), error)
+  }
+  else {
     showSuccessToast({
       description: t('pages.resetPassword.toast.success.description'),
       title: t('pages.resetPassword.toast.success.title'),
@@ -46,13 +51,8 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
 
     await navigateTo('/auth/login')
   }
-  catch (error: any) {
-    logger.error('Reset password failed', error)
-    showErrorToast(t('pages.resetPassword.toast.error.title'), error)
-  }
-  finally {
-    isLoading.value = false
-  }
+
+  isLoading.value = false
 }
 
 definePageMeta({

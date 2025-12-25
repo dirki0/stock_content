@@ -28,16 +28,15 @@ export function useEmail () {
     }
   }
 
-  const sendVerificationEmail = async (name: string, email: string, oneTimePassword: string, emailVerificationCode: string) => {
+  const sendVerificationEmail = async (name: string, email: string, url: string) => {
     if (import.meta.dev && !emailSendInDevMode) {
       // eslint-disable-next-line no-console
-      console.table({ email, emailVerificationCode, name, oneTimePassword })
+      console.table({ email, name, url })
     }
     else {
       const html = await renderEmailComponent('Login', {
-        emailVerificationUrl: `${baseUrl}/api/auth/verify-email-token?token=${emailVerificationCode}`,
+        emailVerificationUrl: url,
         name: getFirstName(name),
-        oneTimePassword,
       }, { pretty: true })
 
       const emailOptions = {
@@ -70,15 +69,15 @@ export function useEmail () {
     }
   }
 
-  const sendPasswordResetEmail = async (name: string, email: string, resetPasswordToken: string) => {
+  const sendPasswordResetEmail = async (name: string, email: string, url: string) => {
     if (import.meta.dev && !emailSendInDevMode) {
       // eslint-disable-next-line no-console
-      console.table({ email, name, resetPasswordToken })
+      console.table({ email, name, url })
     }
     else {
       const html = await renderEmailComponent('ResetPassword', {
         name: getFirstName(name),
-        url: `${baseUrl}/auth/reset-password?token=${resetPasswordToken}`,
+        url,
       }, { pretty: true })
 
       const emailOptions = {

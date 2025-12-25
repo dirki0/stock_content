@@ -12,6 +12,7 @@ import { setupPolar } from './polar'
 export function createBetterAuth () {
   const serverLogger = useServerLogger()
   const runtimeConfig = useRuntimeConfig()
+  const { sendPasswordResetEmail, sendVerificationEmail } = useEmail()
 
   serverLogger.info(`Auth base URL is ${runtimeConfig.public.baseUrl}`)
 
@@ -40,62 +41,15 @@ export function createBetterAuth () {
       enabled: true,
       requireEmailVerification: true,
       sendResetPassword: async ({ url, user }) => {
-        serverLogger.debug(`Reset password url for ${user.email}: ${url}`)
-        // FIXME: Implement email sending
-        // const response = await resendInstance.emails.send({
-        //   from: `${runtimeConfig.public.appName} <${runtimeConfig.public.appNotifyEmail}>`,
-        //   subject: 'Reset your password',
-        //   text: `Click the link to reset your password: ${url}`,
-        //   to: user.email,
-        // })
-        // await logAuditEvent({
-        //   action: 'reset_password',
-        //   category: 'email',
-        //   details: response.error?.message,
-        //   status: response.error ? 'failure' : 'success',
-        //   targetId: user.email,
-        //   targetType: 'email',
-        //   userId: user.id,
-        // })
-        // if (response.error) {
-        //   console.error(`Failed to send reset password email: ${response.error.message}`)
-        //   throw createError({
-        //     statusCode: 500,
-        //     statusMessage: 'Internal Server Error',
-        //   })
-        // }
+        await sendPasswordResetEmail(user.name, user.email, url)
       },
     },
     emailVerification: {
       autoSignInAfterVerification: true,
       sendOnSignUp: true,
       sendVerificationEmail: async ({ url, user }) => {
-        serverLogger.debug(`Verification email url for ${user.email}: ${url}`)
-        // FIXME: Implement email sending
+        await sendVerificationEmail(user.name, user.email, url)
       },
-      //   const response = await resendInstance.emails.send({
-      //     from: `${runtimeConfig.public.appName} <${runtimeConfig.public.appNotifyEmail}>`,
-      //     subject: 'Verify your email address',
-      //     text: `Click the link to verify your email: ${url}`,
-      //     to: user.email,
-      //   })
-      //   await logAuditEvent({
-      //     action: 'verification',
-      //     category: 'email',
-      //     details: response.error?.message,
-      //     status: response.error ? 'failure' : 'success',
-      //     targetId: user.email,
-      //     targetType: 'email',
-      //     userId: user.id,
-      //   })
-      //   if (response.error) {
-      //     console.error(`Failed to send verification email: ${response.error.message}`)
-      //     throw createError({
-      //       statusCode: 500,
-      //       statusMessage: 'Internal Server Error',
-      //     })
-      //   }
-      // },
     },
     plugins: [
       ...(runtimeConfig.public.appEnv === 'development' ? [openAPI()] : []),
@@ -131,7 +85,7 @@ export function createBetterAuth () {
 let _auth: ReturnType<typeof betterAuth>
 
 // Used by npm run auth:schema only.
-const isAuthSchemaCommand = process.argv.some(arg => arg.includes('server/database/schema/auth.ts'))
+const isAuthSchemaCommand = process.argv.some(arg => arg.includes('server/db/schema/auth.ts'))
 if (isAuthSchemaCommand) {
   _auth = createBetterAuth()
 }

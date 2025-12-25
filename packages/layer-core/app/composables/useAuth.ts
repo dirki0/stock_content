@@ -78,7 +78,6 @@ export function useAuth () {
     client,
     errorCodes: client.$ERROR_CODES,
     fetchSession,
-    // forgetPassword: client.forgetPassword, // FIXME
     loggedIn: computed(() => !!session.value),
     resetPassword: client.resetPassword,
     sendVerificationEmail: client.sendVerificationEmail,

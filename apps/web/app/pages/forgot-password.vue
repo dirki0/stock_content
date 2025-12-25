@@ -14,6 +14,7 @@ const state = reactive({
 const { showErrorToast, showSuccessToast } = useAppToast()
 const logger = useLogger()
 const { t } = useI18n()
+const auth = useAuth()
 
 const title = computed(() => t('pages.forgotPassword.title'))
 const description = computed(() => t('pages.forgotPassword.description'))
@@ -23,24 +24,23 @@ const isLoading = ref(false)
 async function onSubmit (event: FormSubmitEvent<Schema>) {
   isLoading.value = true
 
-  try {
-    await $fetch('/api/auth/reset-password', {
-      body: event.data,
-      method: 'POST',
-    })
+  const { error } = await auth.client.requestPasswordReset({
+    email: event.data.email,
+    redirectTo: '/reset-password',
+  })
 
+  if (error) {
+    logger.error('Password reset failed', error)
+    showErrorToast(t('pages.forgotPassword.toast.error.title'), error)
+  }
+  else {
     showSuccessToast({
       description: t('pages.forgotPassword.toast.success.description'),
       title: t('pages.forgotPassword.toast.success.title'),
     })
   }
-  catch (error: any) {
-    logger.error('Password reset failed', error)
-    showErrorToast(t('pages.forgotPassword.toast.error.title'), error)
-  }
-  finally {
-    isLoading.value = false
-  }
+
+  isLoading.value = false
 }
 
 useSeoMeta({

@@ -10,6 +10,8 @@ export default defineNuxtConfig({
     },
   },
 
+  extends: ['layer-emails'],
+
   i18n: {
     defaultLocale: 'en',
     detectBrowserLanguage: false,

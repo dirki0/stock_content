@@ -25,23 +25,22 @@ async function handlePasskeyRegister () {
     return
   }
 
-  // FIXME: Passkey registration is currently disabled
-  // const { error } = await client.passkey.addPasskey({
-  //   name: email,
-  // })
-  //
-  // if (error) {
-  //   const errorMessage = error.message || t('components.auth.toast.passkeyRegisterError.label')
-  //   showErrorToast(t('components.auth.toast.passkeyRegisterError.label'), errorMessage)
-  // }
-  // else {
-  //   showSuccessToast({
-  //     description: t('components.auth.toast.passkeyRegisterSuccess.description'),
-  //     title: t('components.auth.toast.passkeyRegisterSuccess.label'),
-  //   })
-  //
-  //   await navigateTo('/dashboard')
-  // }
+  const { error } = await auth.client.passkey.addPasskey({
+    name: email,
+  })
+
+  if (error) {
+    const errorMessage = error.message || t('components.auth.toast.passkeyRegisterError.label')
+    showErrorToast(t('components.auth.toast.passkeyRegisterError.label'), errorMessage)
+  }
+  else {
+    showSuccessToast({
+      description: t('components.auth.toast.passkeyRegisterSuccess.description'),
+      title: t('components.auth.toast.passkeyRegisterSuccess.label'),
+    })
+
+    await navigateTo('/dashboard')
+  }
 
   isLoading.value = false
 }
@@ -103,24 +102,13 @@ async function onSubmit (payload: FormSubmitEvent<Schema>) {
   isLoading.value = true
 
   const { error } = await auth.signUp.email({
-    // callbackURL: `/auth/otp/verify?email=${encodeURIComponent(payload.data.email)}&type=SIGNUP`,
     email: payload.data.email,
     name: payload.data.name,
     password: payload.data.password,
-    polarCustomerId: '', // FIXME:  Integrate Polar customer ID
+    polarCustomerId: '',
   })
 
   if (error) {
-    // FIXME: Detailed Zod error handling
-    // if (error && error.data && error.data.name === 'ZodError') {
-    //   const issues = error.data.issues
-    //     .map((issue: any) => {
-    //       const path = issue.path.join('.')
-    //       return `Invalid ${path}: ${issue.message}`
-    //     })
-    //     .join('\n')
-    //   logger.error(issues)
-    // }
     showErrorToast(t('components.auth.toast.signupError.label'), error)
   }
   else {

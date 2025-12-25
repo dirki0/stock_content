@@ -1,3 +1,5 @@
+import { consola } from 'consola'
+
 import type { SendEmailHandler } from '../utils/getEmailProvider.types'
 
 const LOGGER_PREFIX = '[email/providers/resend]:'
@@ -5,14 +7,13 @@ const LOGGER_PREFIX = '[email/providers/resend]:'
 export function resendProvider (): EmailProvider {
   const event = useEvent()
   const { private: { emailResendApiToken } } = useRuntimeConfig(event)
-  const serverLogger = useServerLogger()
 
   if (!emailResendApiToken) {
     const error = createError({
       status: 500,
       statusMessage: 'Resend API token is not configured',
     })
-    serverLogger.error(`${LOGGER_PREFIX} Resend API token is not configured`, error)
+    consola.error(`${LOGGER_PREFIX} Resend API token is not configured`, error)
     throw error
   }
 
@@ -41,7 +42,7 @@ export function resendProvider (): EmailProvider {
         statusCode: error.status || error.statusCode || 500,
         statusMessage: error.statusMessage || error.message,
       })
-      serverLogger.error(`${LOGGER_PREFIX} Failed to send email to "${to}" with Resend`, catchError)
+      consola.error(`${LOGGER_PREFIX} Failed to send email to "${to}" with Resend`, catchError)
       throw catchError
     }
   }

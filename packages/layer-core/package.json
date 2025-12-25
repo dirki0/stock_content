@@ -12,7 +12,6 @@
     "lint:fix": "eslint . --fix",
     "dev:prepare": "nuxt prepare",
     "typecheck": "nuxt typecheck",
-    "auth:schema": "npx @better-auth/cli generate --config server/utils/auth.ts --output server/db/schema/auth.ts -y",
     "db:generate": "drizzle-kit generate --config ./server/db/drizzle.config.ts",
     "db:migrate": "drizzle-kit migrate --config ./server/db/drizzle.config.ts"
   },
@@ -28,6 +27,7 @@
     "better-auth": "^1.4.9",
     "consola": "^3.4.2",
     "drizzle-orm": "^0.45.1",
+    "layer-emails": "workspace:*",
     "nuxt": "catalog:",
     "pg": "^8.16.3",
     "tsx": "catalog:",

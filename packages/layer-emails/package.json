@@ -19,7 +19,6 @@
     "typescript": "catalog:",
     "vue": "catalog:",
     "vue-tsc": "catalog:",
-    "layer-core": "workspace:*",
     "site-config": "workspace:*",
     "nuxt-email-renderer": "^2.1.2"
   }

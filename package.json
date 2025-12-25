@@ -8,6 +8,7 @@
     "dev:prepare": "turbo run dev:prepare",
     "build": "turbo run build",
     "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
     "lint:fix": "turbo run lint:fix"
   },
   "keywords": [],
@@ -15,7 +16,7 @@
   "license": "ISC",
   "packageManager": "pnpm@10.26.2",
   "devDependencies": {
-    "turbo": "^2.7.1"
+    "turbo": "^2.7.2"
   },
   "dependencies": {
     "dotenv-cli": "^11.0.0"
