@@ -43,19 +43,6 @@ export default defineNuxtConfig({
     disallow: ['/admin'],
   },
 
-  runtimeConfig: {
-    private: {
-      databaseUrl: process.env.NUXT_PRIVATE_DATABASE_URL,
-    },
-    public: {
-      auth: {
-        redirectGuestTo: '/login',
-        redirectUserTo: '/',
-      },
-      baseURL: process.env.NUXT_APP_URL,
-    },
-  },
-
   schemaOrg: {
     identity: defineOrganization({
       logo: siteConfig.logoUrl,

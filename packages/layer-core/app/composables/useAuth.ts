@@ -1,3 +1,4 @@
+import { passkeyClient } from '@better-auth/passkey/client'
 import { polarClient } from '@polar-sh/better-auth'
 import type { CustomerState } from '@polar-sh/sdk/models/components/customerstate.js'
 import type {
@@ -26,6 +27,7 @@ export function useAuth () {
       }),
       adminClient(),
       polarClient(),
+      passkeyClient(),
     ],
   })
 

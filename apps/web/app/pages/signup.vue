@@ -5,7 +5,7 @@ import * as z from 'zod'
 
 const auth = useAuth()
 const { showErrorToast, showSuccessToast } = useAppToast()
-const logger = useLogger()
+// const logger = useLogger()
 const { t } = useI18n()
 const overlay = useOverlay()
 const modal = overlay.create(PasskeyRegisterModal)
@@ -70,13 +70,17 @@ const providers = computed(() => ([{
   icon: 'i-simple-icons-google',
   label: 'Google',
   onClick: async () => {
-    await navigateTo('/api/auth/google', { external: true })
+    await auth.signIn.social({
+      provider: 'google',
+    })
   },
 }, {
   icon: 'i-simple-icons-github',
   label: 'GitHub',
   onClick: async () => {
-    await navigateTo('/api/auth/github', { external: true })
+    await auth.signIn.social({
+      provider: 'github',
+    })
   },
 }, {
   icon: 'i-lucide-fingerprint',
@@ -98,8 +102,8 @@ type Schema = z.output<typeof schema>
 async function onSubmit (payload: FormSubmitEvent<Schema>) {
   isLoading.value = true
 
-  const { data, error } = await auth.signUp.email({
-    callbackURL: `/auth/otp/verify?email=${encodeURIComponent(payload.data.email)}&type=SIGNUP`,
+  const { error } = await auth.signUp.email({
+    // callbackURL: `/auth/otp/verify?email=${encodeURIComponent(payload.data.email)}&type=SIGNUP`,
     email: payload.data.email,
     name: payload.data.name,
     password: payload.data.password,

@@ -31,4 +31,21 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
   ],
+
+  runtimeConfig: {
+    private: {
+      databaseUrl: '',
+      githubClientId: '',
+      githubClientSecret: '',
+      googleClientId: '',
+      googleClientSecret: '',
+    },
+    public: {
+      auth: {
+        redirectGuestTo: '/login',
+        redirectUserTo: '/',
+      },
+      baseUrl: '',
+    },
+  },
 })

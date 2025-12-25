@@ -4,7 +4,7 @@ import * as z from 'zod'
 
 const { showErrorToast, showSuccessToast } = useAppToast()
 const { t } = useI18n()
-const { client } = useAuth()
+const { client, signIn } = useAuth()
 
 const isLoading = ref(false)
 const passkeyError = ref('')
@@ -57,13 +57,17 @@ const providers = computed(() => ([{
   icon: 'i-simple-icons-google',
   label: 'Google',
   onClick: async () => {
-    await navigateTo('/api/auth/google', { external: true })
+    await client.signIn.social({
+      provider: 'google',
+    })
   },
 }, {
   icon: 'i-simple-icons-github',
   label: 'GitHub',
   onClick: async () => {
-    await navigateTo('/api/auth/github', { external: true })
+    await client.signIn.social({
+      provider: 'github',
+    })
   },
 }, {
   icon: 'i-lucide-fingerprint',

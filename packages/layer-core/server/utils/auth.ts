@@ -1,3 +1,4 @@
+import { passkey } from '@better-auth/passkey'
 import { betterAuth } from 'better-auth'
 import { drizzleAdapter } from 'better-auth/adapters/drizzle'
 import { admin, openAPI } from 'better-auth/plugins'
@@ -9,9 +10,10 @@ import * as schema from '../db/schema'
 import { setupPolar } from './polar'
 
 export function createBetterAuth () {
+  const serverLogger = useServerLogger()
   const runtimeConfig = useRuntimeConfig()
 
-  console.log(`Base URL is ${runtimeConfig.public.baseURL}`)
+  serverLogger.info(`Auth base URL is ${runtimeConfig.public.baseUrl}`)
 
   return betterAuth({
     account: {
@@ -26,7 +28,7 @@ export function createBetterAuth () {
         },
       },
     },
-    baseURL: runtimeConfig.public.baseURL!,
+    baseURL: runtimeConfig.public.baseUrl!,
     database: drizzleAdapter(
       db,
       {
@@ -38,7 +40,7 @@ export function createBetterAuth () {
       enabled: true,
       requireEmailVerification: true,
       sendResetPassword: async ({ url, user }) => {
-        console.log(`Reset password url for ${user.email}: ${url}`)
+        serverLogger.debug(`Reset password url for ${user.email}: ${url}`)
         // FIXME: Implement email sending
         // const response = await resendInstance.emails.send({
         //   from: `${runtimeConfig.public.appName} <${runtimeConfig.public.appNotifyEmail}>`,
@@ -68,7 +70,7 @@ export function createBetterAuth () {
       autoSignInAfterVerification: true,
       sendOnSignUp: true,
       sendVerificationEmail: async ({ url, user }) => {
-        console.log(`Verification email url for ${user.email}: ${url}`)
+        serverLogger.debug(`Verification email url for ${user.email}: ${url}`)
         // FIXME: Implement email sending
       },
       //   const response = await resendInstance.emails.send({
@@ -99,20 +101,21 @@ export function createBetterAuth () {
       ...(runtimeConfig.public.appEnv === 'development' ? [openAPI()] : []),
       admin(),
       setupPolar(),
+      passkey(),
     ],
     // secondaryStorage: cacheClient, // FIXME
     secret: runtimeConfig.betterAuthSecret,
     socialProviders: {
       github: {
-        clientId: runtimeConfig.githubClientId!,
-        clientSecret: runtimeConfig.githubClientSecret!,
+        clientId: runtimeConfig.private.githubClientId!,
+        clientSecret: runtimeConfig.private.githubClientSecret!,
       },
       google: {
-        clientId: runtimeConfig.googleClientId!,
-        clientSecret: runtimeConfig.googleClientSecret!,
+        clientId: runtimeConfig.private.googleClientId!,
+        clientSecret: runtimeConfig.private.googleClientSecret!,
       },
     },
-    trustedOrigins: ['http://localhost:9009', runtimeConfig.public.baseURL!],
+    trustedOrigins: ['http://localhost:9009', runtimeConfig.public.baseUrl!],
     user: {
       additionalFields: {
         polarCustomerId: {

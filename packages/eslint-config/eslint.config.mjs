@@ -17,7 +17,7 @@ export function createNuxtSharedConfig(withNuxt) {
         name: 'base-rules',
         files: ['**/*'],
         rules: {
-          'node/prefer-global/process': ['error', 'never'],
+          'node/prefer-global/process': 'off',
           'style/quotes': ['error', 'single', { avoidEscape: true }],
           'style/space-before-function-paren': ['error', 'always'],
           'ts/array-type': ['error', { default: 'generic' }],
