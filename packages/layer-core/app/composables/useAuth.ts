@@ -2,7 +2,7 @@ import { passkeyClient } from '@better-auth/passkey/client'
 import { polarClient } from '@polar-sh/better-auth'
 import type { CustomerState } from '@polar-sh/sdk/models/components/customerstate.js'
 import type {
-  ClientOptions,
+  BetterAuthClientOptions,
   InferSessionFromClient,
 } from 'better-auth/client'
 import { adminClient, inferAdditionalFields } from 'better-auth/client/plugins'
@@ -31,7 +31,7 @@ export function useAuth () {
     ],
   })
 
-  const session = useState<InferSessionFromClient<ClientOptions> | null>('auth:session', () => null)
+  const session = useState<InferSessionFromClient<BetterAuthClientOptions> | null>('auth:session', () => null)
   const user = useState<null | User>('auth:user', () => null)
   const polarState = useState<CustomerState | null>('auth:polarState', () => null)
   const sessionFetching = import.meta.server ? ref(false) : useState('auth:sessionFetching', () => false)

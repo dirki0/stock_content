@@ -35,6 +35,8 @@ export default defineNuxtConfig({
   ],
 
   runtimeConfig: {
+    betterAuthSecret: '',
+    betterAuthUrl: '',
     private: {
       databaseUrl: '',
       githubClientId: '',
