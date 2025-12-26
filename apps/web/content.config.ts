@@ -1,5 +1,6 @@
-import { defineCollection, defineContentConfig, z } from '@nuxt/content'
+import { defineCollection, defineContentConfig } from '@nuxt/content'
 import { asSitemapCollection } from '@nuxtjs/sitemap/content'
+import { z } from 'zod'
 
 const docsSchema = z.object({
   links: z.array(z.object({
