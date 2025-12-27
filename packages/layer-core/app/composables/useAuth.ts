@@ -1,6 +1,10 @@
 import { passkeyClient } from '@better-auth/passkey/client'
 import { polarClient } from '@polar-sh/better-auth'
 import type { CustomerState } from '@polar-sh/sdk/models/components/customerstate.js'
+import type {
+  BetterAuthClientOptions,
+  InferSessionFromClient,
+} from 'better-auth/client'
 import { adminClient, inferAdditionalFields } from 'better-auth/client/plugins'
 import { createAuthClient } from 'better-auth/vue'
 import type { RouteLocationRaw } from 'vue-router'
@@ -8,6 +12,7 @@ import type { RouteLocationRaw } from 'vue-router'
 export function useAuth () {
   const url = useRequestURL()
   const headers = import.meta.server ? useRequestHeaders() : undefined
+
   const client = createAuthClient({
     baseURL: url.origin,
     fetchOptions: {
@@ -27,7 +32,7 @@ export function useAuth () {
     ],
   })
 
-  const session = client.useSession()
+  const session = useState<InferSessionFromClient<BetterAuthClientOptions> | null>('auth:session', () => null)
   const user = useState<null | User>('auth:user', () => null)
   const polarState = useState<CustomerState | null>('auth:polarState', () => null)
   const sessionFetching = import.meta.server ? ref(false) : useState('auth:sessionFetching', () => false)
@@ -37,6 +42,8 @@ export function useAuth () {
       return
     }
     sessionFetching.value = true
+    const { data } = await client.getSession()
+    session.value = data?.session || null
 
     const userDefaults = {
       banExpires: null,
@@ -46,15 +53,17 @@ export function useAuth () {
       role: null,
       stripeCustomerId: null,
     }
-    user.value = session.value.data?.user
-      ? Object.assign({}, userDefaults, session.value.data.user)
+    user.value = data?.user
+      ? Object.assign({}, userDefaults, data.user)
       : null
+
     if (user.value) {
       const { data: customerState } = await client.customer.state()
       polarState.value = customerState
     }
+
     sessionFetching.value = false
-    return session.value.data
+    return data
   }
 
   if (import.meta.client) {
@@ -81,9 +90,10 @@ export function useAuth () {
       await client.signOut({
         fetchOptions: {
           onSuccess: async () => {
+            session.value = null
             user.value = null
             if (redirectTo) {
-              await reloadNuxtApp({
+              reloadNuxtApp({
                 path: redirectTo.toString(),
               })
             }

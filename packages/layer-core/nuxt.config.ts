@@ -34,6 +34,12 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
   ],
 
+  nitro: {
+    experimental: {
+      asyncContext: true,
+    },
+  },
+
   runtimeConfig: {
     betterAuthSecret: '',
     betterAuthUrl: '',

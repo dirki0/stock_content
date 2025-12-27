@@ -16,7 +16,7 @@ const items = computed(() => {
     },
   ]
 
-  if (auth.user.value.role === 'ADMIN') {
+  if (auth.user.value?.role === 'ADMIN') {
     _items.push({
       badge: {
         color: 'warning',
