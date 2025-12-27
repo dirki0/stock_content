@@ -169,7 +169,7 @@ definePageMeta({
 
         <template #password-hint>
           <NuxtLink
-            to="/auth/forgot-password"
+            to="/forgot-password"
             class="text-(--ui-primary) font-medium"
           >
             {{ $t('pages.login.forgotPassword') }}

@@ -38,6 +38,7 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
       description: t('pages.forgotPassword.toast.success.description'),
       title: t('pages.forgotPassword.toast.success.title'),
     })
+    await navigateTo('/')
   }
 
   isLoading.value = false

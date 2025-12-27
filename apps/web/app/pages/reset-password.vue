@@ -49,7 +49,7 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
       title: t('pages.resetPassword.toast.success.title'),
     })
 
-    await navigateTo('/auth/login')
+    await navigateTo('/login')
   }
 
   isLoading.value = false

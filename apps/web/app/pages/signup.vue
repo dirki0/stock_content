@@ -148,7 +148,7 @@ definePageMeta({
       >
         <template #description>
           {{ $t('pages.register.alreadyAccount') }} <ULink
-            to="/auth/login"
+            to="/login"
             class="text-(--ui-primary) font-medium"
           >
             {{ $t('pages.register.signIn') }}

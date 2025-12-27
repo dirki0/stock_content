@@ -119,7 +119,7 @@ const items = computed(() => links.value.map(({ icon, ...link }) => link))
         </UButton>
         <template v-if="!loggedIn">
           <UButton
-            to="/auth/login"
+            to="/login"
             color="neutral"
             variant="ghost"
           >
