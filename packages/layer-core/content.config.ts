@@ -27,7 +27,7 @@ const blogSchema = z.object({
     }),
   ),
   category: z.string(),
-  date: z.string().date(),
+  date: z.date(),
   image: z.string(),
 })
 

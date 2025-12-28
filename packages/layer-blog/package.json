@@ -1,0 +1,21 @@
+{
+  "name": "layer-blog",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "dev:prepare": "nuxt prepare",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "eslint-config": "workspace:*",
+    "layer-core": "workspace:*",
+    "nuxt": "catalog:"
+  }
+}

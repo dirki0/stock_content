@@ -50,6 +50,7 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/ui',
+    '@nuxt/content',
     '@nuxtjs/seo',
     '@nuxt/image',
     '@nuxt/eslint',

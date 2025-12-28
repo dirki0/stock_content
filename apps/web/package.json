@@ -13,9 +13,8 @@
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
-    "@nuxt/content": "^3.10.0",
-    "better-sqlite3": "^12.5.0",
     "eslint-config": "workspace:*",
+    "layer-blog": "workspace:*",
     "layer-dashboard": "workspace:*",
     "layer-testimonials": "workspace:*",
     "nuxt": "catalog:",
