@@ -10,8 +10,6 @@ export default defineNuxtConfig({
     },
   },
 
-  extends: ['layer-emails'],
-
   i18n: {
     defaultLocale: 'en',
     detectBrowserLanguage: false,
@@ -37,25 +35,6 @@ export default defineNuxtConfig({
   nitro: {
     experimental: {
       asyncContext: true,
-    },
-  },
-
-  runtimeConfig: {
-    betterAuthSecret: '',
-    betterAuthUrl: '',
-    private: {
-      databaseUrl: '',
-      githubClientId: '',
-      githubClientSecret: '',
-      googleClientId: '',
-      googleClientSecret: '',
-    },
-    public: {
-      auth: {
-        redirectGuestTo: '/login',
-        redirectUserTo: '/',
-      },
-      baseUrl: '',
     },
   },
 })

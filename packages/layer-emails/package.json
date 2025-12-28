@@ -15,11 +15,8 @@
   },
   "dependencies": {
     "nuxt": "catalog:",
-    "tsx": "catalog:",
-    "typescript": "catalog:",
-    "vue": "catalog:",
-    "vue-tsc": "catalog:",
     "site-config": "workspace:*",
+    "layer-core": "workspace:*",
     "nuxt-email-renderer": "^2.1.2"
   }
 }

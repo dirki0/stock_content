@@ -1,11 +1,11 @@
 import type { Buffer } from 'node:buffer'
-import type { BlobProvider } from '../utils/types'
 import { promises as fs } from 'node:fs'
 import { dirname, join } from 'node:path'
 
-export function getLocalBlobProvider(uploadDir: string, publicPath: string): BlobProvider {
+import type { StorageProvider } from '../utils/types'
 
-  const uploadBlob = async(file: Buffer, fileName: string): Promise<{ path: string, url?: string }> => {
+export function getLocalStorageProvider (uploadDir: string, publicPath: string): StorageProvider {
+  const upload = async (file: Buffer, fileName: string): Promise<{ path: string, url?: string }> => {
     const filePath = join(uploadDir, fileName)
     const dir = dirname(filePath)
 
@@ -14,15 +14,16 @@ export function getLocalBlobProvider(uploadDir: string, publicPath: string): Blo
 
     return {
       path: fileName,
-      url: `${publicPath}/${fileName}`
+      url: `${publicPath}/${fileName}`,
     }
   }
 
-  const deleteBlob = async (path: string): Promise<void> => {
+  const deleteFile = async (path: string): Promise<void> => {
     const filePath = join(uploadDir, path)
     try {
       await fs.unlink(filePath)
-    } catch (error) {
+    }
+    catch (error) {
       if ((error as any).code !== 'ENOENT') {
         throw error
       }
@@ -38,16 +39,17 @@ export function getLocalBlobProvider(uploadDir: string, publicPath: string): Blo
       const filePath = join(uploadDir, path)
       await fs.access(filePath)
       return Promise.resolve(true)
-    } catch {
+    }
+    catch {
       return Promise.resolve(false)
     }
   }
 
   return {
-    name: 'local',
-    uploadBlob,
-    deleteBlob,
-    getUrl,
+    delete: deleteFile,
     exists,
+    getUrl,
+    name: 'local',
+    upload,
   }
 }

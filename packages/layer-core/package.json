@@ -11,25 +11,16 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "dev:prepare": "nuxt prepare",
-    "typecheck": "nuxt typecheck",
-    "db:generate": "drizzle-kit generate --config ./server/db/drizzle.config.ts",
-    "db:migrate": "drizzle-kit migrate --config ./server/db/drizzle.config.ts"
+    "typecheck": "nuxt typecheck"
   },
   "dependencies": {
-    "@better-auth/passkey": "^1.4.9",
     "@nuxt/eslint": "1.10.0",
     "@nuxt/ui": "^4.3.0",
     "@nuxtjs/i18n": "10.2.1",
-    "@polar-sh/better-auth": "^1.6.3",
-    "@polar-sh/sdk": "^0.42.1",
     "@vueuse/core": "^14.1.0",
     "@vueuse/nuxt": "^14.1.0",
-    "better-auth": "^1.4.9",
     "consola": "^3.4.2",
-    "drizzle-orm": "^0.45.1",
-    "layer-emails": "workspace:*",
     "nuxt": "catalog:",
-    "pg": "^8.16.3",
     "tsx": "catalog:",
     "typescript": "catalog:",
     "vue": "catalog:",
@@ -37,8 +28,6 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@types/pg": "^8.16.0",
-    "drizzle-kit": "^0.31.8",
     "eslint": "^9.39.2",
     "eslint-config": "workspace:*"
   }
