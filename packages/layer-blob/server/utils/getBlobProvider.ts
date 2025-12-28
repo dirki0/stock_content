@@ -1,10 +1,11 @@
-import {getLocalBlobProvider} from '../providers/local'
-import {getS3CompatibleBlobProvider} from '../providers/s3Compatible'
-import { BlobProvider } from "./types";
+import { getLocalBlobProvider } from '../providers/local'
+import { getS3CompatibleBlobProvider } from '../providers/s3Compatible'
+
+import type { BlobProvider } from './types'
 
 export function getBlobProvider (config: FileManagerConfig['storage']): BlobProvider {
   const event = useEvent()
-  const { private: { blobProvider, blobUploadDirectory, blobPublicPath } } = useRuntimeConfig(event)
+  const { private: { blobProvider, blobPublicPath, blobUploadDirectory } } = useRuntimeConfig(event)
 
   switch (blobProvider) {
     case 'local':
@@ -19,7 +20,7 @@ export function getBlobProvider (config: FileManagerConfig['storage']): BlobProv
       }
       return getS3CompatibleBlobProvider({
         provider: 's3',
-        ...config.s3
+        ...config.s3,
       })
 
     case 'r2':
@@ -28,7 +29,7 @@ export function getBlobProvider (config: FileManagerConfig['storage']): BlobProv
       }
       return getS3CompatibleBlobProvider({
         provider: 'r2',
-        ...config.r2
+        ...config.r2,
       })
 
     default:

@@ -16,7 +16,9 @@
   "dependencies": {
     "aws4fetch": "^1.0.20",
     "nuxt": "catalog:",
+    "eslint-config": "workspace:*",
     "site-config": "workspace:*",
+    "layer-core": "workspace:*",
     "tsx": "catalog:",
     "typescript": "catalog:",
     "vue": "catalog:",
