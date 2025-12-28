@@ -14,7 +14,7 @@
     "typecheck": "nuxt typecheck"
   },
   "devDependencies": {
-    "layer-core": "workspace:*",
+    "layer-auth": "workspace:*",
     "nuxt": "catalog:"
   },
   "dependencies": {

@@ -31,7 +31,7 @@ export function createBetterAuth () {
     },
     baseURL: runtimeConfig.public.baseUrl!,
     database: drizzleAdapter(
-      db,
+      useDb(),
       {
         provider: 'pg',
         schema,

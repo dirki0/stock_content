@@ -14,11 +14,10 @@
   },
   "dependencies": {
     "@nuxt/content": "^3.10.0",
-    "@nuxt/image": "^2.0.0",
-    "@nuxtjs/seo": "^3.3.0",
     "better-sqlite3": "^12.5.0",
     "eslint-config": "workspace:*",
     "layer-dashboard": "workspace:*",
+    "layer-testimonials": "workspace:*",
     "nuxt": "catalog:",
     "site-config": "workspace:*",
     "tsx": "catalog:",

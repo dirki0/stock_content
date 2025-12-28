@@ -16,6 +16,8 @@
   "dependencies": {
     "@nuxt/eslint": "1.10.0",
     "@nuxt/ui": "^4.3.0",
+    "@nuxt/image": "^2.0.0",
+    "@nuxtjs/seo": "^3.3.0",
     "@nuxtjs/i18n": "10.2.1",
     "@vueuse/core": "^14.1.0",
     "@vueuse/nuxt": "^14.1.0",

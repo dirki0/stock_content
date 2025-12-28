@@ -35,6 +35,8 @@ export async function ensurePolarCustomer (user: User) {
 
 export function setupPolar () {
   const runtimeConfig = useRuntimeConfig()
+  const serverLogger = useServerLogger()
+
   return polar({
     client: createPolarClient(),
     createCustomerOnSignUp: true,
@@ -58,7 +60,7 @@ export function setupPolar () {
       webhooks({
         onPayload: async (payload) => {
           // Catch-all for all events
-          console.log('Polar webhook received:', payload.type, payload.data) // FIXME:
+          serverLogger.debug('Polar webhook received:', payload.type, payload.data)
         },
         // On Polar Organization Settings: {APP_URL}/api/auth/polar/webhooks
         secret: runtimeConfig.polarWebhookSecret,
