@@ -1,0 +1,22 @@
+{
+  "name": "layer-payment",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "./nuxt.config.ts",
+  "scripts": {
+    "dev": "nuxi dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "dev:prepare": "nuxt prepare",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "@polar-sh/sdk": "^0.42.1",
+    "eslint-config": "workspace:*",
+    "layer-auth": "workspace:*",
+    "nuxt": "catalog:"
+  }
+}
