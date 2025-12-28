@@ -18,7 +18,6 @@
     "@nuxtjs/seo": "^3.3.0",
     "better-sqlite3": "^12.5.0",
     "eslint-config": "workspace:*",
-    "layer-core": "workspace:*",
     "layer-dashboard": "workspace:*",
     "nuxt": "catalog:",
     "site-config": "workspace:*",

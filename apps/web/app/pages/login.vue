@@ -16,7 +16,7 @@ async function handlePasskeyAuthenticate () {
   isLoading.value = true
   passkeyError.value = ''
 
-  const { error } = await signIn.passkey({
+  const { error } = await signIn.passkey({ // FIXME: Passkey login/signup does not work
     autoFill: true,
     fetchOptions: {
       onError (context) {
