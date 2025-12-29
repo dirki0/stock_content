@@ -2,7 +2,7 @@ import { defineCollection, defineContentConfig } from '@nuxt/content'
 import { asSitemapCollection } from '@nuxtjs/sitemap/content'
 import { z } from 'zod'
 
-const contentSchema = z.object({
+const docsSchema = z.object({
   links: z.array(z.object({
     avatar: z.object({
       alt: z.string(),
@@ -20,10 +20,10 @@ const contentSchema = z.object({
 
 export default defineContentConfig({
   collections: {
-    content: defineCollection(
+    docs: defineCollection(
       asSitemapCollection({
-        schema: contentSchema,
-        source: '**/*',
+        schema: docsSchema,
+        source: 'docs/**',
         type: 'page',
       }),
     ),

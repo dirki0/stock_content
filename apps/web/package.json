@@ -19,6 +19,7 @@
     "layer-testimonials": "workspace:*",
     "layer-payment": "workspace:*",
     "layer-waitlist": "workspace:*",
+    "layer-docs": "workspace:*",
     "nuxt": "catalog:",
     "site-config": "workspace:*",
     "tsx": "catalog:",
