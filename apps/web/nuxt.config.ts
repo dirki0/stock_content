@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     'layer-testimonials',
     'layer-blog',
     'layer-payment',
+    'layer-waitlist',
   ],
 
   nitro: {
