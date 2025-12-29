@@ -73,6 +73,12 @@ export default defineNuxtConfig({
     disallow: ['/admin'],
   },
 
+  runtimeConfig: {
+    private: {
+      redisUrl: '',
+    },
+  },
+
   schemaOrg: {
     identity: defineOrganization({
       logo: siteConfig.logoUrl,

@@ -4,7 +4,7 @@ import type { BannerProps } from '@nuxt/ui'
 const { t } = useI18n()
 
 const { data: bannerData } = useFetch('/api/banner', { server: false })
-// const { isImpersonating, resetImpersonation } = useAdminImpersonation()
+// const { isImpersonating, resetImpersonation } = useAdminImpersonation() // FIXME:
 //
 // const impersonationActions = ref<Array<ButtonProps>>([
 //   {
@@ -26,13 +26,13 @@ const { data: bannerData } = useFetch('/api/banner', { server: false })
       v-bind="bannerData.bannerProps as BannerProps"
     />
   </ClientOnly>
-  <ClientOnly v-if="isImpersonating">
-    <UBanner
-      id="impersonation"
-      color="warning"
-      icon="i-lucide-info"
-      :title="t('general.banner.impersonation.title')"
-      :actions="impersonationActions"
-    />
-  </ClientOnly>
+<!--  <ClientOnly v-if="isImpersonating"> -->
+<!--    <UBanner -->
+<!--      id="impersonation" -->
+<!--      color="warning" -->
+<!--      icon="i-lucide-info" -->
+<!--      :title="t('general.banner.impersonation.title')" -->
+<!--      :actions="impersonationActions" -->
+<!--    /> -->
+<!--  </ClientOnly> -->
 </template>
