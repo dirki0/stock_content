@@ -1,6 +1,4 @@
-// @ts-check
+import { createNuxtSharedConfig } from 'eslint-config'
 import withNuxt from './.nuxt/eslint.config.mjs'
 
-export default withNuxt(
-  // Your custom configs here
-)
+export default createNuxtSharedConfig(withNuxt)

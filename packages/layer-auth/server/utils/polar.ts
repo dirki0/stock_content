@@ -43,17 +43,7 @@ export function setupPolar () {
     use: [
       checkout({
         authenticatedUsersOnly: true,
-        products: [
-          {
-            productId: runtimeConfig.polarProductIdProMonth,
-            slug: 'pro-monthly',
-          },
-          {
-            productId: runtimeConfig.polarProductIdProYear,
-            slug: 'pro-yearly',
-          },
-        ],
-        successUrl: '/',
+        successUrl: '/dashboard',
       }),
       portal(),
       usage(),

@@ -11,12 +11,7 @@ const activeBillingCycle = ref('0')
 const billingCycleTabItems = [{ label: t('pages.pricing.billingCycle.monthly') }, { label: t('pages.pricing.billingCycle.yearly') }]
 
 async function onButtonClick () {
-  if (loggedIn.value) {
-    await navigateTo('/dashboard/settings/billing')
-  }
-  else {
-    await navigateTo('/auth/login')
-  }
+  await navigateTo(loggedIn.value ? '/dashboard/settings/billing' : '/login')
 }
 
 const plans = computed(() => {
@@ -53,18 +48,18 @@ const plans = computed(() => {
 <template>
   <div class="flex justify-center w-full">
     <UTabs
-        v-model="activeBillingCycle"
-        :items="billingCycleTabItems"
-        color="neutral"
-        class="w-72"
-        :ui="{ list: 'rounded-full', indicator: 'rounded-full' }"
+      v-model="activeBillingCycle"
+      :items="billingCycleTabItems"
+      color="neutral"
+      class="w-72"
+      :ui="{ list: 'rounded-full', indicator: 'rounded-full' }"
     />
   </div>
   <UPricingPlans compact>
     <UPricingPlan
-        v-for="(plan, index) of plans"
-        :key="index"
-        v-bind="plan"
+      v-for="(plan, index) of plans"
+      :key="index"
+      v-bind="plan"
     />
   </UPricingPlans>
 </template>

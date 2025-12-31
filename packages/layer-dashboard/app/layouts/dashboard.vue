@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui'
 
-// const { user } = useUserSession()
+const { client, user } = useAuth()
 const { t } = useI18n()
-const auth = useAuth()
+const { hasProPlan } = useBilling()
 
-// const { data } = useFetch<{ activeSubscription: null | SelectSubscription, lifeTimeDeal: null | SelectUserLifeTimeDeals, products: Array<PaymentProduct> }>('/api/payment/status')
+const { data: customerState, error } = await client.customer.state()
 
 const items = computed(() => {
   const _items: Array<NavigationMenuItem> = [
@@ -16,7 +16,7 @@ const items = computed(() => {
     },
   ]
 
-  if (auth.user.value?.role === 'ADMIN') {
+  if (user.value?.role === 'ADMIN') {
     _items.push({
       badge: {
         color: 'warning',
@@ -68,7 +68,7 @@ const items = computed(() => {
             link-text-class="text-sm"
           />
           <UBadge
-            v-if="!collapsed && data?.activeSubscription"
+            v-if="!collapsed && hasProPlan"
             color="primary"
             variant="outline"
           >
@@ -110,6 +110,8 @@ const items = computed(() => {
     <div class="flex flex-col w-full h-full overflow-auto">
       <AppBanners />
       <slot />
+      {{ customerState }}
+      {{ error }}
     </div>
   </UDashboardGroup>
 </template>

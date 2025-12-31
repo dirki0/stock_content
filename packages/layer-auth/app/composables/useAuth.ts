@@ -1,5 +1,5 @@
 import { passkeyClient } from '@better-auth/passkey/client'
-import { polarClient } from '@polar-sh/better-auth'
+import { polarClient } from '@polar-sh/better-auth/client'
 import type { CustomerState } from '@polar-sh/sdk/models/components/customerstate.js'
 import type {
   BetterAuthClientOptions,
@@ -75,13 +75,15 @@ export function useAuth () {
   }
 
   return {
-    activePolarSubscriptions: computed(() => {
-      return polarState.value?.activeSubscriptions
+    activeSubscription: computed(() => {
+      const activeSubscriptions = polarState.value?.activeSubscriptions ?? []
+      return activeSubscriptions.length > 0 ? activeSubscriptions[0] : null
     }),
     client,
     errorCodes: client.$ERROR_CODES,
     fetchSession,
     loggedIn: computed(() => !!session.value),
+    polarState: computed(() => polarState.value),
     resetPassword: client.resetPassword,
     sendVerificationEmail: client.sendVerificationEmail,
     session,
