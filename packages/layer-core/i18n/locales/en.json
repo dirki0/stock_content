@@ -865,6 +865,11 @@
               "placeholder": "Enter your new password",
               "validationMessage": "Password must be at least 8 characters long"
             },
+            "currentPassword": {
+              "label": "Current Password",
+              "placeholder": "Enter your current password",
+              "validationMessage": "Password must be at least 8 characters long"
+            },
             "submitButton": "Save changes"
           }
         },

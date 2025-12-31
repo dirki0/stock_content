@@ -7,19 +7,20 @@
     "lint": {
       "outputs": []
     },
+    "lint:fix": {
+      "outputs": []
+    },
     "dev": {
       "persistent": true,
-      "cache": false
+      "cache": false,
+      "dependsOn": ["dev:prepare"]
     },
     "dev:prepare": {
-      "outputs": []
-    },
-    "transit": {
-      "dependsOn": ["^transit"]
+      "outputs": [],
+      "cache": false
     },
     "typecheck": {
-      "dependsOn": ["transit"],
-      "outputs": []
+      "dependsOn": ["^typecheck"]
     }
   },
   "globalEnv": [

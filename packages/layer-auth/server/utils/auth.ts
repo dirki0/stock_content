@@ -78,6 +78,9 @@ export function createBetterAuth () {
           type: 'string',
         },
       },
+      deleteUser: {
+        enabled: true,
+      },
     },
   })
 }
