@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { BlobObject } from '@nuxthub/core'
 import type { FormSubmitEvent } from '#ui/types'
 import { z } from 'zod'
 
@@ -7,51 +6,52 @@ const isLoading = ref(false)
 
 const { t } = useI18n()
 const logger = useLogger()
+const auth = useAuth()
 const { showErrorToast, showSuccessToast } = useAppToast()
-const { fetch: refreshSession, user } = useUserSession()
+
+const user = computed(() => auth.user.value)
 
 const schema = z.object({
-  avatarUrl: z.string().optional(),
+  imageUrl: z.string().optional(),
   name: z.string().min(1, t('pages.dashboard.settings.updateProfile.form.name.validationMessage')),
 })
 type Schema = z.output<typeof schema>
 
 const state = ref({
-  avatarUrl: user.value?.avatarUrl || '',
-  name: user.value?.name || '',
+  imageUrl: auth.user.value?.image || '',
+  name: auth.user.value?.name || '',
 })
 
 async function onSubmit (event: FormSubmitEvent<Schema>) {
   isLoading.value = true
 
-  try {
-    await $fetch('/api/auth/user', {
-      body: event.data,
-      method: 'PATCH',
-    })
-    await refreshSession()
+  const { error } = await auth.client.updateUser({
+    image: event.data.imageUrl,
+    name: event.data.name,
+  })
+
+  if (error) {
+    logger.error('Failed to update profile', error)
+    showErrorToast(t('pages.dashboard.settings.updateProfile.toast.error.title'), error)
+  }
+  else {
     showSuccessToast({
       description: t('pages.dashboard.settings.updateProfile.toast.success.description'),
       title: t('pages.dashboard.settings.updateProfile.toast.success.title'),
     })
   }
-  catch (error: any) {
-    logger.error('Failed to update profile', error)
-    showErrorToast(t('pages.dashboard.settings.updateProfile.toast.error.title'), error)
-  }
-  finally {
-    isLoading.value = false
-  }
+
+  isLoading.value = false
 }
 
-async function onUploadImage (blob: BlobObject) {
-  state.value.avatarUrl = blob.pathname
+async function onUploadImage () {
+  // state.value.avatarUrl = blob.pathname
 }
 </script>
 
 <template>
   <UForm
-    v-if="user"
+    v-if="auth.user"
     :schema="schema"
     :state="state"
     @submit="onSubmit"
@@ -79,9 +79,8 @@ async function onUploadImage (blob: BlobObject) {
         size="lg"
         name="avatarUrl"
       >
-        <AvatarUploader
-          api-url="/api/auth/user/avatar"
-          :image-path-name="state.avatarUrl"
+        <DashboardAvatarUploader
+          :image-path-name="state.imageUrl"
           @upload="onUploadImage"
         />
       </UFormField>

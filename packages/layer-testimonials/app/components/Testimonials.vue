@@ -20,9 +20,8 @@ defineProps<Props>()
             :name="testimonial.author.name"
             :description="testimonial.author.description"
             :avatar="testimonial.author.avatar ? {
-              src: `/images/${testimonial.author.avatar.src}`,
+              src: testimonial.author.avatar.src,
               alt: testimonial.author.name,
-              provider: 'customCloudflare',
             } : undefined"
             size="xl"
           />

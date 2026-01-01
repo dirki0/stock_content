@@ -1,8 +1,8 @@
 export const siteConfig = {
     description: 'This is a demo application built with the Nuxt Starter Kit.',
     domain: 'demo.nuxtstarterkit.com',
-    logoUrl: 'https://demo.nuxtstarterkit.com/images/logo.png',
-    logoWithTextUrl: 'https://demo.nuxtstarterkit.com/images/logo.png',
+    logoUrl: 'https://demo-nuxtstarterkit.twic.pics/logo.png',
+    logoWithTextUrl: 'https://demo-nuxtstarterkit.twic.pics/logo.png',
     name: 'Demo SaaS',
     socialMedia: {
         github: {
@@ -15,4 +15,5 @@ export const siteConfig = {
         },
     },
     url: 'https://demo.nuxtstarterkit.com',
+    imageProviderUrl: 'https://demo-nuxtstarterkit.twic.pics'
 }

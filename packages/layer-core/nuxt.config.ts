@@ -36,16 +36,10 @@ export default defineNuxtConfig({
 
   image: {
     domains: ['demo.nuxtstarterkit.com'],
-    provider: 'ipx',
-    // FIXME:
-    // providers: {
-    //   customCloudflare: {
-    //     options: {
-    //       prodSiteURL: siteConfig.url,
-    //     },
-    //     provider: '~/providers/customCloudflare.ts',
-    //   },
-    // },
+    provider: 'twicpics',
+    twicpics: {
+      baseURL: siteConfig.imageProviderUrl,
+    },
   },
 
   modules: [

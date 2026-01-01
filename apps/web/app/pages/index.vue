@@ -43,7 +43,7 @@ const features: Array<HeroSectionFeature> = [
       'i-lucide-chef-hat',
       'i-lucide-earth',
     ],
-    imagePath: '/images/placeholder.jpg',
+    imagePath: '/placeholder.jpg',
     name: 'one',
   },
   {
@@ -53,7 +53,7 @@ const features: Array<HeroSectionFeature> = [
       'i-lucide-rocket',
       'i-lucide-earth',
     ],
-    imagePath: '/images/placeholder.jpg',
+    imagePath: '/placeholder.jpg',
     name: 'two',
     reverse: true,
   },

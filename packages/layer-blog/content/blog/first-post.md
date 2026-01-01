@@ -1,7 +1,7 @@
 ---
 title: 'Why Boilerplate Repos Are Important'
 description: 'Understanding the significance of boilerplate repositories in software development.'
-image: '/images/blog/placeholder-2.jpg'
+image: '/blog/placeholder-2.jpg'
 authors:
   - name: Michael Hoffmann
     avatar:

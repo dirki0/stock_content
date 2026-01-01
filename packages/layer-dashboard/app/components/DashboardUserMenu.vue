@@ -12,9 +12,7 @@ const { locale, setLocale, t } = useI18n()
 const user = computed(() => ({
   avatar: {
     alt: auth.user.value?.name || '-',
-    // provider: 'customCloudflare', // FIXME: customCloudflare
-    // src: auth.user.value?.avatarUrl || '-', // FIXME: avatarUrl
-    src: '-',
+    src: auth.user.value?.image || '-',
   },
   name: auth.user.value?.name || '-',
 }))
@@ -103,33 +101,33 @@ const items = computed<Array<Array<DropdownMenuItem>>>(() => ([[{
   icon: 'i-lucide-log-out',
   label: t('pages.dashboard.userMenu.items.logout'),
   onSelect: async () => {
-    await auth.signOut({redirectTo: '/'})
+    await auth.signOut({ redirectTo: '/' })
   },
 }]]))
 </script>
 
 <template>
   <UDropdownMenu
-      :items="items"
-      :ui="{ content: collapsed ? 'w-40' : 'w-(--reka-dropdown-menu-trigger-width)' }"
+    :items="items"
+    :ui="{ content: collapsed ? 'w-40' : 'w-(--reka-dropdown-menu-trigger-width)' }"
   >
     <UButton
-        v-bind="{
+      v-bind="{
         ...user,
         label: collapsed ? undefined : user?.name,
         trailingIcon: collapsed ? undefined : 'i-lucide-chevrons-up-down',
       }"
-        color="neutral"
-        variant="ghost"
-        block
-        :square="collapsed"
-        class="data-[state=open]:bg-(--ui-bg-elevated)"
+      color="neutral"
+      variant="ghost"
+      block
+      :square="collapsed"
+      class="data-[state=open]:bg-(--ui-bg-elevated)"
     />
 
     <template #chip-leading="{ item }">
       <span
-          class="ms-0.5 size-2 rounded-full bg-(--chip)"
-          :style="{ '--chip': `var(--color-${item.label}-400)` }"
+        class="ms-0.5 size-2 rounded-full bg-(--chip)"
+        :style="{ '--chip': `var(--color-${item.label}-400)` }"
       />
     </template>
   </UDropdownMenu>
