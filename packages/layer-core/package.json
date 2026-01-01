@@ -24,10 +24,12 @@
     "@vueuse/nuxt": "^14.1.0",
     "better-sqlite3": "^12.5.0",
     "consola": "^3.4.2",
+    "date-fns": "^4.1.0",
     "ioredis": "^5.8.2",
     "nuxt": "catalog:",
     "tsx": "catalog:",
     "typescript": "catalog:",
+    "uuid": "^13.0.0",
     "vue": "catalog:",
     "vue-tsc": "catalog:",
     "zod": "catalog:"

@@ -1,14 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-  extends: ['layer-core'],
+  extends: ['layer-auth'],
 
   runtimeConfig: {
     private: {
       storage: {
         local: {
           publicPath: '',
-          uploadDir: ''
+          uploadDir: '',
         },
         provider: '',
         r2: {
@@ -25,8 +25,8 @@ export default defineNuxtConfig({
           publicUrl: '',
           region: '',
           secretAccessKey: '',
-        }
-      }
+        },
+      },
     },
   },
 })

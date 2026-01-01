@@ -4,8 +4,6 @@ import { getS3CompatibleStorageProvider } from '../providers/s3Compatible'
 import type { StorageProvider } from './types'
 
 export function getStorageProvider (config: FileManagerConfig['storage']): StorageProvider {
-  const event = useEvent()
-
   switch (config.provider) {
     case 'local':
       if (!config.local) {

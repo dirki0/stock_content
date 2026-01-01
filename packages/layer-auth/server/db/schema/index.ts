@@ -1,3 +1,4 @@
 export * from './auth'
 export * from './testimonial'
 export * from './waitlist'
+export * from './file'
