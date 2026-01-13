@@ -1,5 +1,5 @@
 export default defineEventHandler(async (event) => {
-  const config = useFileManagerConfig()
+  const config = useStorageConfig()
   const user = await requireAuth(event)
   const fileId = getRouterParam(event, 'id')
 
@@ -10,9 +10,9 @@ export default defineEventHandler(async (event) => {
     })
   }
   const storage = getStorageProvider(config.storage)
-  const fileService = useFile(storage)
+  const { deleteFile, getFile } = useFileStorage(storage)
 
-  const file = await fileService.getFile(fileId)
+  const file = await getFile(fileId)
 
   if (!file) {
     throw createError({
@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
     })
   }
 
-  const deleted = await fileService.deleteFile(fileId)
+  const deleted = await deleteFile(fileId)
 
   return {
     message: deleted ? 'File deleted successfully' : 'File not found',

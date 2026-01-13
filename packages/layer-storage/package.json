@@ -14,10 +14,10 @@
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
-    "aws4fetch": "^1.0.20",
-    "nuxt": "catalog:",
+    "@aws-sdk/client-s3": "^3.962.0",
     "eslint-config": "workspace:*",
-    "site-config": "workspace:*",
-    "layer-auth": "workspace:*"
+    "layer-auth": "workspace:*",
+    "nuxt": "catalog:",
+    "site-config": "workspace:*"
   }
 }

@@ -1,4 +1,4 @@
-export interface FileManagerConfig {
+export interface FileStorageConfig {
   allowedTypes?: Array<string>
   maxSize?: number
   onError?: (error: Error) => void
@@ -6,7 +6,7 @@ export interface FileManagerConfig {
   onSuccess?: (file: any) => void
 }
 
-export function useFileManager (config: FileManagerConfig = {}) {
+export function useFileStorage (config: FileStorageConfig = {}) {
   const isUploading = ref(false)
   const progress = ref(0)
   const error = ref<null | string>(null)
@@ -34,7 +34,7 @@ export function useFileManager (config: FileManagerConfig = {}) {
     error.value = null
 
     try {
-      const response = await $fetch('/api/file/upload', {
+      const response = await $fetch('/api/storage/upload', {
         body: formData,
         method: 'POST',
       })

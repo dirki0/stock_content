@@ -1,4 +1,4 @@
-function useUploadRateLimit (windowSizeMinutes: number, maxUploadsPerWindow: number) {
+export function useUploadRateLimit (windowSizeMinutes: number, maxUploadsPerWindow: number) {
   const { getItem, setItem } = useCache()
   const logger = useServerLogger()
 

@@ -16,6 +16,7 @@
   "devDependencies": {
     "layer-auth": "workspace:*",
     "layer-payment": "workspace:*",
+    "layer-storage": "workspace:*",
     "nuxt": "catalog:"
   },
   "dependencies": {

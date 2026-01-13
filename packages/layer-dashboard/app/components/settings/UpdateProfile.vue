@@ -44,8 +44,8 @@ async function onSubmit (event: FormSubmitEvent<Schema>) {
   isLoading.value = false
 }
 
-async function onUploadImage () {
-  // state.value.avatarUrl = blob.pathname
+async function onUploadImage (uploadPathName: string) {
+  state.value.imageUrl = uploadPathName
 }
 </script>
 

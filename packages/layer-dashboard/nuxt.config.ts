@@ -3,5 +3,6 @@ export default defineNuxtConfig({
   extends: [
     'layer-auth',
     'layer-payment',
+    'layer-storage',
   ],
 })

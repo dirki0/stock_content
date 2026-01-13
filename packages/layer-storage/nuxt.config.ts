@@ -6,18 +6,12 @@ export default defineNuxtConfig({
   runtimeConfig: {
     private: {
       storage: {
+        allowedMimeTypes: '',
         local: {
           publicPath: '',
-          uploadDir: '',
         },
+        maxFileSize: '',
         provider: '',
-        r2: {
-          accessKeyId: '',
-          accountId: '',
-          bucketName: '',
-          publicUrl: '',
-          secretAccessKey: '',
-        },
         s3: {
           accessKeyId: '',
           bucketName: '',
@@ -25,6 +19,11 @@ export default defineNuxtConfig({
           publicUrl: '',
           region: '',
           secretAccessKey: '',
+        },
+        uploadDir: '',
+        uploadRateLimit: {
+          maxUploadsPerWindow: 100,
+          windowSizeMinutes: 1,
         },
       },
     },

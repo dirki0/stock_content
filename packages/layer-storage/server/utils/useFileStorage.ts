@@ -7,12 +7,12 @@ import { v7 as uuidv7 } from 'uuid'
 
 import type { StorageProvider } from './types'
 
-export function useFileManagerConfig () {
-  const config = useRuntimeConfig().fileManager
+export function useStorageConfig () {
+  const config = useRuntimeConfig().private.storage
   if (!config) {
     throw createError({
       statusCode: 500,
-      statusMessage: 'File manager configuration not found',
+      statusMessage: 'Storage configuration not found',
     })
   }
   return config
@@ -32,8 +32,8 @@ function getFileTypeFromMimeType (mimeType: string) {
   return 'other'
 }
 
-export function useFile (storage: StorageProvider) {
-  const generateFileName = (originalName: string): string => {
+export function useFileStorage (storage: StorageProvider) {
+  const generateFileName = (originalName: string, userId?: string, uploadDir?: string): string => {
     const fileId = uuidv7()
     const ext = extname(originalName)
 
@@ -41,22 +41,23 @@ export function useFile (storage: StorageProvider) {
 
     const fileName = `${fileId}${ext}`
 
-    // YYYY-MM-DD/uuid.ext
-    return `${dateFolder}/${fileName}`
+    // ${optionalFolderName}${optionalUserId}/YYYY-MM-DD/uuid.ext
+    return `${uploadDir ? `${uploadDir}/` : ''}${userId ? `${userId}/` : ''}${dateFolder}/${fileName}`
   }
 
   const uploadFile = async (
     fileBuffer: Buffer,
     originalName: string,
     mimeType: string,
-    uploadedBy?: string,
+    userId?: string,
+    uploadDir?: string,
   ): Promise<FileRecord> => {
     const db = useDb()
     const fileId = uuidv7()
-    const fileName = generateFileName(originalName)
+    const fileName = generateFileName(originalName, userId, uploadDir)
     const fileType = getFileTypeFromMimeType(mimeType)
 
-    const { path, url } = await storage.upload(fileBuffer, fileName, mimeType)
+    const { path } = await storage.upload(fileBuffer, fileName, mimeType)
 
     const fileData = {
       fileName,
@@ -68,8 +69,7 @@ export function useFile (storage: StorageProvider) {
       path,
       size: fileBuffer.length,
       storageProvider: storage.name,
-      uploadedBy,
-      url,
+      uploadedBy: userId,
     }
 
     const [fileRecord] = await db.insert(fileTable).values(fileData).returning()

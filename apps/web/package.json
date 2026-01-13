@@ -17,7 +17,6 @@
     "layer-blog": "workspace:*",
     "layer-dashboard": "workspace:*",
     "layer-testimonials": "workspace:*",
-    "layer-payment": "workspace:*",
     "layer-waitlist": "workspace:*",
     "layer-docs": "workspace:*",
     "nuxt": "catalog:",

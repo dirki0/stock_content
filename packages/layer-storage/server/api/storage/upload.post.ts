@@ -1,7 +1,7 @@
 import { readMultipartFormData } from 'h3'
 
 export default defineEventHandler(async (event) => {
-  const config = useFileManagerConfig()
+  const config = useStorageConfig()
 
   const user = await requireAuth(event)
 
@@ -43,8 +43,8 @@ export default defineEventHandler(async (event) => {
     }
   }
 
-  const storageProvider = getStorageProvider(config.storage)
-  const fileService = useFile(storageProvider)
+  const storageProvider = getStorageProvider(config)
+  const { uploadFile } = useFileStorage(storageProvider)
 
   const fileData = validFiles[0]!
 
@@ -52,10 +52,10 @@ export default defineEventHandler(async (event) => {
   const fileSize = fileData.data.length
 
   // Validate file size
-  if (config.maxFileSize && fileSize > config.maxFileSize) {
+  if (config.maxFileSize && fileSize > Number(config.maxFileSize)) {
     throw createError({
       statusCode: 413,
-      statusMessage: `File size exceeds maximum allowed size of ${formatFileSize(config.maxFileSize)}`,
+      statusMessage: `File size exceeds maximum allowed size of ${formatFileSize(Number(config.maxFileSize))}`,
     })
   }
 
@@ -70,11 +70,12 @@ export default defineEventHandler(async (event) => {
   }
 
   try {
-    const file = await fileService.uploadFile(
+    const file = await uploadFile(
       fileData.data,
       fileData.filename!,
       mimeType,
       user.id,
+      config.uploadDir,
     )
     return {
       file,

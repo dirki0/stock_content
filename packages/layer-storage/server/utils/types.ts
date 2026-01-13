@@ -8,25 +8,17 @@ export interface StorageProvider {
   upload: (file: Buffer, fileName: string, mimeType: string) => Promise<{ path: string, url?: string }>
 }
 
-export type StorageProviderType = 'local' | 'r2' | 's3'
+export type StorageProviderType = 'local' | 's3'
 
-export interface FileManagerConfig {
-  allowedMimeTypes?: Array<string>
-  maxFileSize?: number
+export interface StorageConfig {
   storage: {
-    local?: {
+    allowedMimeTypes?: Array<string>
+    local: {
       publicPath: string
-      uploadDir: string
     }
+    maxFileSize?: number
     provider: StorageProviderType
-    r2?: {
-      accessKeyId: string
-      accountId: string
-      bucketName: string
-      publicUrl?: string
-      secretAccessKey: string
-    }
-    s3?: {
+    s3: {
       accessKeyId: string
       bucketName: string
       endpoint?: string
@@ -34,9 +26,10 @@ export interface FileManagerConfig {
       region: string
       secretAccessKey: string
     }
-  }
-  uploadRateLimit?: {
-    maxUploadsPerWindow: number // Maximum number of uploads allowed per window
-    windowSizeMinutes: number // Size of the time window in minutes
+    uploadDir: string
+    uploadRateLimit?: {
+      maxUploadsPerWindow: number // Maximum number of uploads allowed per window
+      windowSizeMinutes: number // Size of the time window in minutes
+    }
   }
 }

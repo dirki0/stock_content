@@ -7,7 +7,6 @@ export default defineNuxtConfig({
     'layer-dashboard',
     'layer-testimonials',
     'layer-blog',
-    'layer-payment',
     'layer-waitlist',
     'layer-docs',
   ],

@@ -15,6 +15,7 @@ interface Emits {
 
 const value = ref(null)
 const uploadedImagePathName = ref<null | string>(null)
+const { uploadToServer } = useFileStorage()
 
 // const upload = useUpload(props.apiUrl, { method: 'PUT' })
 const logger = useLogger()
@@ -29,6 +30,22 @@ const imageSrc = computed(() => {
   return uploadedImagePathName.value ? uploadedImagePathName.value : ''
 })
 
+async function onUpdateModelValue (file: File | null | undefined) {
+  if (!file) {
+    return
+  }
+
+  try {
+    const uploadedFile = await uploadToServer(file)
+    console.log('uploadedFile path', uploadedFile.path)
+    emit('upload', uploadedFile.path)
+  }
+  catch (error: any) {
+    showErrorToast('Upload failed', t('components.dashboardAvatarUploader.uploadErrorMessage')) // FIXME: i18n
+    logger.error('Upload failed', error)
+  }
+}
+
 watch(() => props.imagePathName, (newImagePathName) => {
   if (newImagePathName) {
     uploadedImagePathName.value = newImagePathName
@@ -42,6 +59,7 @@ watch(() => props.imagePathName, (newImagePathName) => {
     v-model="value"
     variant="button"
     accept="image/*"
+    @update:model-value="onUpdateModelValue"
   >
     <UAvatar
       size="xl"

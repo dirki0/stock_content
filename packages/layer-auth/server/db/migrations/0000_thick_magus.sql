@@ -100,6 +100,22 @@ CREATE TABLE "waitlist" (
 	CONSTRAINT "waitlist_email_unique" UNIQUE("email")
 );
 --> statement-breakpoint
+CREATE TABLE "file" (
+	"id" uuid PRIMARY KEY NOT NULL,
+	"original_name" text NOT NULL,
+	"file_name" text NOT NULL,
+	"mime_type" text NOT NULL,
+	"file_type" text NOT NULL,
+	"size" integer NOT NULL,
+	"path" text NOT NULL,
+	"url" text,
+	"storage_provider" text NOT NULL,
+	"uploaded_by" uuid,
+	"is_active" boolean DEFAULT true NOT NULL,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
 ALTER TABLE "account" ADD CONSTRAINT "account_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "passkey" ADD CONSTRAINT "passkey_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "session" ADD CONSTRAINT "session_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;
