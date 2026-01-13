@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 interface Props {
   accept?: string
-  apiUrl: string
   imagePathName?: string
 }
 const props = withDefaults(defineProps<Props>(), {
@@ -14,20 +13,35 @@ interface Emits {
 }
 
 const value = ref(null)
-const uploadedImagePathName = ref<null | string>(null)
-const { uploadToServer } = useFileStorage()
-
-// const upload = useUpload(props.apiUrl, { method: 'PUT' })
-const logger = useLogger()
-const { t } = useI18n()
-const { showErrorToast } = useAppToast()
+const uploadedImageUrl = ref<null | string>(null)
+const { uploadToServer } = useFileStorage({
+  onError: (err) => {
+    useToast().add({
+      color: 'error',
+      description: err.message,
+      title: 'Upload Failed',
+    })
+  },
+  onSuccess: async (file) => {
+    useToast().add({
+      color: 'success',
+      description: `File "${file.originalName}" uploaded successfully`,
+      title: 'Upload Success',
+    })
+    // Fetch the URL for the uploaded file
+    try {
+      const fileData = await $fetch<{ url: string }>(`/api/storage/${file.id}`)
+      uploadedImageUrl.value = fileData.url
+      emit('upload', file.id)
+    }
+    catch (error) {
+      console.error('Failed to fetch uploaded file URL', error)
+    }
+  },
+})
 
 const imageSrc = computed(() => {
-  if (uploadedImagePathName.value && uploadedImagePathName.value.startsWith('http')) {
-    return uploadedImagePathName.value
-  }
-
-  return uploadedImagePathName.value ? uploadedImagePathName.value : ''
+  return uploadedImageUrl.value || ''
 })
 
 async function onUpdateModelValue (file: File | null | undefined) {
@@ -36,21 +50,38 @@ async function onUpdateModelValue (file: File | null | undefined) {
   }
 
   try {
-    const uploadedFile = await uploadToServer(file)
-    console.log('uploadedFile path', uploadedFile.path)
-    emit('upload', uploadedFile.path)
+    await uploadToServer(file)
   }
   catch (error: any) {
-    showErrorToast('Upload failed', t('components.dashboardAvatarUploader.uploadErrorMessage')) // FIXME: i18n
-    logger.error('Upload failed', error)
+    console.error('Upload failed', error)
   }
 }
 
-watch(() => props.imagePathName, (newImagePathName) => {
-  if (newImagePathName) {
-    uploadedImagePathName.value = newImagePathName
-  }
-}, { immediate: true })
+// Load existing image URL if imagePathName is provided
+watch(
+  () => props.imagePathName,
+  async (newImagePathName) => {
+    if (newImagePathName) {
+      // If it's already a URL, use it directly
+      if (newImagePathName.startsWith('http')) {
+        uploadedImageUrl.value = newImagePathName
+      }
+      else {
+        // Otherwise, fetch the URL from the API
+        try {
+          const fileData = await $fetch<{ url: string }>(
+            `/api/storage/${newImagePathName}`,
+          )
+          uploadedImageUrl.value = fileData.url
+        }
+        catch (error) {
+          console.error('Failed to load image URL', error)
+        }
+      }
+    }
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
@@ -58,12 +89,12 @@ watch(() => props.imagePathName, (newImagePathName) => {
     v-slot="{ open }"
     v-model="value"
     variant="button"
-    accept="image/*"
+    :accept="accept"
     @update:model-value="onUpdateModelValue"
   >
     <UAvatar
       size="xl"
-      src="/test-avatar.png"
+      :src="imageSrc"
       icon="i-lucide-image"
       @click="open"
     />
