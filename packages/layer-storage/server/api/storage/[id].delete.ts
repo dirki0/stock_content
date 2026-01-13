@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
       statusMessage: 'File ID is required',
     })
   }
-  const storage = getStorageProvider(config.storage)
+  const storage = getStorageProvider(config)
   const { deleteFile, getFile } = useFileStorage(storage)
 
   const file = await getFile(fileId)
