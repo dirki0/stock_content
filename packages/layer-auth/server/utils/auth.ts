@@ -52,10 +52,10 @@ export function createBetterAuth () {
       },
     },
     plugins: [
-      ...(runtimeConfig.public.appEnv === 'development' ? [openAPI()] : []),
       admin(),
       setupPolar(),
       passkey(),
+      ...(runtimeConfig.public.appEnv === 'development' ? [openAPI()] : []),
     ],
     // secondaryStorage: cacheClient, // FIXME
     secret: runtimeConfig.betterAuthSecret,
@@ -85,7 +85,7 @@ export function createBetterAuth () {
   })
 }
 
-let _auth: ReturnType<typeof betterAuth>
+let _auth: ReturnType<typeof createBetterAuth>
 
 // Used by npm run auth:schema only.
 const isAuthSchemaCommand = process.argv.some(arg => arg.includes('server/db/schema/auth.ts'))

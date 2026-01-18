@@ -6,13 +6,12 @@ export default defineEventHandler(async () => {
   const serverLogger = useServerLogger()
 
   try {
-    const item = await useCache().getItem(BANNER_CACHE_KEY)
+    const { getActiveItem } = useBanner()
+    const banner = await getActiveItem()
 
-    if (!item) {
+    if (!banner) {
       return null
     }
-
-    const banner = JSON.parse(item) as Banner
 
     const bannerProps: BannerProps = {
       close: banner.isClosable,
@@ -20,6 +19,7 @@ export default defineEventHandler(async () => {
       icon: banner.icon,
       target: banner.target,
       title: banner.title,
+      to: banner.to,
     }
 
     return {

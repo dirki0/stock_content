@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui'
 
-const { client, user } = useAuth()
+const { client, user, isUserAdmin } = useAuth()
 const { t } = useI18n()
 const { hasProPlan } = useBilling()
 
@@ -16,7 +16,7 @@ const items = computed(() => {
     },
   ]
 
-  if (user.value?.role === 'ADMIN') {
+  if (isUserAdmin.value) {
     _items.push({
       badge: {
         color: 'warning',

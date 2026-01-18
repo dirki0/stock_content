@@ -82,6 +82,7 @@ export function useAuth () {
     client,
     errorCodes: client.$ERROR_CODES,
     fetchSession,
+    isUserAdmin: computed(() => (user.value?.role ?? '').toLowerCase() === 'admin'),
     loggedIn: computed(() => !!session.value),
     polarState: computed(() => polarState.value),
     resetPassword: client.resetPassword,
