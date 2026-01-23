@@ -1,22 +1,22 @@
 <script lang="ts" setup>
-import type { BannerProps } from '@nuxt/ui'
+import type { BannerProps, ButtonProps } from '@nuxt/ui'
 
 const { t } = useI18n()
 
-const { data: bannerData } = useFetch('/api/banner', { server: false })
-// const { isImpersonating, resetImpersonation } = useAdminImpersonation() // FIXME:
-//
-// const impersonationActions = ref<Array<ButtonProps>>([
-//   {
-//     icon: 'i-lucide-triangle-alert',
-//     label: t('general.banner.impersonation.stopActionLabel'),
-//     onClick: async () => {
-//       await resetImpersonation()
-//     },
-//     size: 'sm',
-//     variant: 'soft',
-//   },
-// ])
+const { data: bannerData } = useFetch('/api/banner')
+const { client, isImpersonated } = useAuth()
+
+const impersonationActions = ref<Array<ButtonProps>>([
+  {
+    icon: 'i-lucide-triangle-alert',
+    label: t('general.banner.impersonation.stopActionLabel'),
+    onClick: async () => {
+      await client.admin.stopImpersonating()
+    },
+    size: 'sm',
+    variant: 'soft',
+  },
+])
 </script>
 
 <template>
@@ -26,13 +26,13 @@ const { data: bannerData } = useFetch('/api/banner', { server: false })
       v-bind="bannerData.bannerProps as BannerProps"
     />
   </ClientOnly>
-<!--  <ClientOnly v-if="isImpersonating"> -->
-<!--    <UBanner -->
-<!--      id="impersonation" -->
-<!--      color="warning" -->
-<!--      icon="i-lucide-info" -->
-<!--      :title="t('general.banner.impersonation.title')" -->
-<!--      :actions="impersonationActions" -->
-<!--    /> -->
-<!--  </ClientOnly> -->
+  <ClientOnly v-if="isImpersonated">
+    <UBanner
+      id="impersonation"
+      color="warning"
+      icon="i-lucide-info"
+      :title="t('general.banner.impersonation.title')"
+      :actions="impersonationActions"
+    />
+  </ClientOnly>
 </template>

@@ -19,7 +19,7 @@ export function useBilling () {
       page: 1,
       productBillingType: 'one_time',
     },
-  }).then((res: any) => { // FIXME: type missing
+  }).then((res: any) => { // TODO: types are missing
     if (res.data.result.items.length > 0) {
       const orderItem = res.data.result.items[0]
       if (orderItem.productId === lifeTimeDealProduct.value?.id && orderItem.status === 'paid') {

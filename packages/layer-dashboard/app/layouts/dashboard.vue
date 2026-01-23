@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { NavigationMenuItem } from '@nuxt/ui'
 
-const { client, user, isUserAdmin } = useAuth()
+const { client, isUserAdmin, user } = useAuth()
 const { t } = useI18n()
 const { hasProPlan } = useBilling()
 
@@ -30,10 +30,6 @@ const items = computed(() => {
         exact: true,
         label: t('pages.admin.links.waitlist'),
         to: '/dashboard/admin/waitlist',
-      }, {
-        exact: true,
-        label: t('pages.admin.links.emailTemplates'),
-        to: '/dashboard/admin/email-templates',
       }, {
         exact: true,
         label: t('pages.admin.links.testimonials'),
