@@ -14,7 +14,6 @@ const UUser = resolveComponent('UUser')
 const UIcon = resolveComponent('UIcon')
 const UBadge = resolveComponent('UBadge')
 const UButton = resolveComponent('UButton')
-const Icon = resolveComponent('Icon')
 const UDropdownMenu = resolveComponent('UDropdownMenu')
 
 const { t } = useI18n()
@@ -25,15 +24,6 @@ function formatDate (dateString: string) {
 
 function timeAgo (dateString: string) {
   return useTimeAgo(new Date(dateString)).value
-}
-
-function getProviderIcon (providerId: string) {
-  const icons: Record<string, string> = {
-    github: 'i-simple-icons-github',
-    google: 'i-simple-icons-google',
-    twitter: 'i-simple-icons-x',
-  }
-  return icons[providerId.toLowerCase()] || 'i-lucide-link'
 }
 
 function getMaskedEmail (email: string) {
@@ -62,7 +52,7 @@ const columns: Array<TableColumn<AdminSelectUser>> = [
         avatar: {
           alt: row.original.name,
           size: 'sm',
-          src: row.original.avatarUrl,
+          src: row.original.image,
         },
         name: row.original.name,
       })
@@ -101,7 +91,7 @@ const columns: Array<TableColumn<AdminSelectUser>> = [
   {
     accessorKey: 'role',
     cell: ({ row }) => {
-      return h(UBadge, { color: row.original.role === 'ADMIN' ? 'warning' : 'neutral', variant: 'subtle' }, row.original.role)
+      return h(UBadge, { color: row.original.role === 'ADMIN' ? 'warning' : 'neutral', variant: 'subtle' }, row.original.role ?? '-')
     },
     header: t('pages.admin.users.tableHeaders.role'),
   },
@@ -121,17 +111,8 @@ const columns: Array<TableColumn<AdminSelectUser>> = [
   },
   {
     accessorKey: 'lastActive',
-    cell: ({ row }) => timeAgo(row.original.lastActive as unknown as string),
+    cell: ({ row }) => timeAgo(row.original.updatedAt as unknown as string),
     header: t('pages.admin.users.tableHeaders.lastActive'),
-  },
-  {
-    accessorKey: 'linkedAccounts',
-    cell: ({ row }) => {
-      return h('div', { class: 'flex items-center gap-x-2' }, row.original.linkedAccounts?.map((providerId: string) => {
-        return h(Icon, { class: 'h-4 w-4', name: getProviderIcon(providerId) })
-      }))
-    },
-    header: t('pages.admin.users.tableHeaders.linkedAccounts'),
   },
   {
     cell: ({ row }) => {

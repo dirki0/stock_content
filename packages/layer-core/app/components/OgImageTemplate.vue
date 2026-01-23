@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { siteConfig } from '~~/config/siteConfig'
+import { siteConfig } from 'site-config'
 /**
  * @credits NuxtLabs <https://nuxtlabs.com/>
  * @see https://github.com/nuxt/nuxt.com/blob/main/components/OgImage/OgImageDocs.vue
