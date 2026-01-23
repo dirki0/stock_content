@@ -1,4 +1,4 @@
-import { checkout, polar, portal, usage, webhooks } from '@polar-sh/better-auth'
+import { checkout, polar, portal } from '@polar-sh/better-auth'
 import { Polar } from '@polar-sh/sdk'
 
 function createPolarClient () {
@@ -34,9 +34,6 @@ export async function ensurePolarCustomer (user: User) {
 }
 
 export function setupPolar () {
-  const runtimeConfig = useRuntimeConfig()
-  const serverLogger = useServerLogger()
-
   return polar({
     client: createPolarClient(),
     createCustomerOnSignUp: true,
@@ -46,15 +43,6 @@ export function setupPolar () {
         successUrl: '/dashboard',
       }),
       portal(),
-      usage(),
-      webhooks({
-        onPayload: async (payload) => {
-          // Catch-all for all events
-          serverLogger.debug('Polar webhook received:', payload.type, payload.data)
-        },
-        // On Polar Organization Settings: {APP_URL}/api/auth/polar/webhooks
-        secret: runtimeConfig.polarWebhookSecret,
-      }),
     ],
   })
 }
