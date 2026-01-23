@@ -1,5 +1,7 @@
 import { readMultipartFormData } from 'h3'
 
+import { useFileStorage } from '../utils/fileStorage'
+
 export default defineEventHandler(async (event) => {
   const config = useStorageConfig()
 

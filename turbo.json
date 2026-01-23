@@ -2,13 +2,23 @@
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "build": {
-      "outputs": ["dist/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        ".vercel/output/**",
+        "dist/**",
+        ".output/**",
+        ".nuxt/**"
+      ]
     },
     "lint": {
-      "outputs": []
+      "outputs": [],
+      "cache": true
     },
     "lint:fix": {
-      "outputs": []
+      "outputs": [],
+      "cache": false
     },
     "dev": {
       "persistent": true,
@@ -16,11 +26,15 @@
       "dependsOn": ["dev:prepare"]
     },
     "dev:prepare": {
-      "outputs": [],
+      "outputs": [
+        "dist/**",
+        ".output/**",
+        ".nuxt/**"
+      ],
       "cache": false
     },
     "typecheck": {
-      "dependsOn": ["^typecheck"]
+      "cache": true
     }
   },
   "globalEnv": [
