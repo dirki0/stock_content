@@ -10,13 +10,15 @@
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "lint:fix": "turbo run lint:fix",
-    "postinstall": "pnpm run dev:prepare"
+    "postinstall": "pnpm run dev:prepare",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "packageManager": "pnpm@10.27.0",
+  "packageManager": "pnpm@10.28.1",
   "devDependencies": {
+    "husky": "^9.1.7",
     "turbo": "^2.7.5"
   },
   "dependencies": {
