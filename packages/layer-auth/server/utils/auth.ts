@@ -57,7 +57,6 @@ export function createBetterAuth () {
       passkey(),
       ...(runtimeConfig.public.appEnv === 'development' ? [openAPI()] : []),
     ],
-    // secondaryStorage: cacheClient, // FIXME
     secret: runtimeConfig.betterAuthSecret,
     socialProviders: {
       github: {

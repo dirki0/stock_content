@@ -17,6 +17,7 @@
     "layer-auth": "workspace:*",
     "layer-payment": "workspace:*",
     "layer-storage": "workspace:*",
+    "layer-testimonials": "workspace:*",
     "nuxt": "catalog:"
   },
   "dependencies": {

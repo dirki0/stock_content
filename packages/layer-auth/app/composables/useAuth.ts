@@ -1,10 +1,6 @@
 import { passkeyClient } from '@better-auth/passkey/client'
 import { polarClient } from '@polar-sh/better-auth/client'
 import type { CustomerState } from '@polar-sh/sdk/models/components/customerstate.js'
-import type {
-  BetterAuthClientOptions,
-  InferSessionFromClient,
-} from 'better-auth/client'
 import { adminClient, inferAdditionalFields } from 'better-auth/client/plugins'
 import { createAuthClient } from 'better-auth/vue'
 import type { RouteLocationRaw } from 'vue-router'
@@ -32,7 +28,7 @@ export function useAuth () {
     ],
   })
 
-  const session = useState<InferSessionFromClient<BetterAuthClientOptions> | null>('auth:session', () => null)
+  const session = useState<null | Session>('auth:session', () => null)
   const user = useState<null | User>('auth:user', () => null)
   const polarState = useState<CustomerState | null>('auth:polarState', () => null)
   const sessionFetching = import.meta.server ? ref(false) : useState('auth:sessionFetching', () => false)
@@ -82,6 +78,7 @@ export function useAuth () {
     client,
     errorCodes: client.$ERROR_CODES,
     fetchSession,
+    isImpersonated: computed(() => !!session.value?.impersonatedBy),
     isUserAdmin: computed(() => (user.value?.role ?? '').toLowerCase() === 'admin'),
     loggedIn: computed(() => !!session.value),
     polarState: computed(() => polarState.value),

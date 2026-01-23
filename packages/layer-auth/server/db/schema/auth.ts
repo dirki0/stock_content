@@ -30,6 +30,7 @@ export const session = pgTable('session', {
   createdAt: timestamp('created_at').defaultNow().notNull(),
   expiresAt: timestamp('expires_at').notNull(),
   id: uuid('id').primaryKey(),
+  impersonatedBy: uuid('impersonated_by').references(() => user.id, { onDelete: 'cascade' }),
   ipAddress: text('ip_address'),
   token: text('token').notNull().unique(),
   updatedAt: timestamp('updated_at')

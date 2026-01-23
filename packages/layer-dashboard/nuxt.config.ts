@@ -4,6 +4,7 @@ export default defineNuxtConfig({
     'layer-auth',
     'layer-payment',
     'layer-storage',
+    'layer-testimonials',
   ],
   runtimeConfig: {
     public: {

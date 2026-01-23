@@ -31,6 +31,7 @@ CREATE TABLE "session" (
 	"created_at" timestamp DEFAULT now() NOT NULL,
 	"expires_at" timestamp NOT NULL,
 	"id" uuid PRIMARY KEY NOT NULL,
+	"impersonated_by" uuid,
 	"ip_address" text,
 	"token" text NOT NULL,
 	"updated_at" timestamp DEFAULT now() NOT NULL,
@@ -116,6 +117,21 @@ CREATE TABLE "file" (
 	"updated_at" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
+CREATE TABLE "banner" (
+	"id" uuid PRIMARY KEY NOT NULL,
+	"title" text NOT NULL,
+	"color" text NOT NULL,
+	"icon" text,
+	"to" text,
+	"target" text,
+	"is_closable" boolean DEFAULT false NOT NULL,
+	"is_active" boolean DEFAULT false NOT NULL,
+	"show_until" timestamp,
+	"created_at" timestamp DEFAULT now() NOT NULL,
+	"updated_at" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
 ALTER TABLE "account" ADD CONSTRAINT "account_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "passkey" ADD CONSTRAINT "passkey_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
+ALTER TABLE "session" ADD CONSTRAINT "session_impersonated_by_user_id_fk" FOREIGN KEY ("impersonated_by") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;--> statement-breakpoint
 ALTER TABLE "session" ADD CONSTRAINT "session_user_id_user_id_fk" FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON DELETE cascade ON UPDATE no action;
