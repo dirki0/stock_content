@@ -14,8 +14,8 @@
     "typecheck": "nuxt typecheck"
   },
   "devDependencies": {
-    "layer-auth": "workspace:*",
     "eslint-config": "workspace:*",
+    "layer-auth": "workspace:*",
     "nuxt": "catalog:"
   }
 }

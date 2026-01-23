@@ -46,12 +46,12 @@ useSeoMeta({
 
 <template>
   <UDashboardPanel
-      id="settings"
-      :ui="{ body: 'lg:py-12' }"
+    id="settings"
+    :ui="{ body: 'lg:py-12' }"
   >
     <template #header>
       <UDashboardNavbar
-          :title="title"
+        :title="title"
       >
         <template #leading>
           <UDashboardSidebarCollapse />
@@ -61,17 +61,17 @@ useSeoMeta({
       <UDashboardToolbar>
         <!-- NOTE: The `-mx-1` class is used to align with the `DashboardSidebarCollapse` button here. -->
         <UNavigationMenu
-            :items="links"
-            highlight
-            class="-mx-1 flex-1"
+          :items="links"
+          highlight
+          class="-mx-1 flex-1"
         />
       </UDashboardToolbar>
     </template>
 
     <template #body>
       <div
-          class="flex flex-col gap-4 sm:gap-6 lg:gap-12 mx-auto"
-          :class="{ 'lg:max-w-2xl': $route.path !== '/dashboard/settings/billing' }"
+        class="flex flex-col gap-4 sm:gap-6 lg:gap-12 mx-auto"
+        :class="{ 'lg:max-w-2xl': $route.path !== '/dashboard/settings/billing' }"
       >
         <NuxtPage />
       </div>

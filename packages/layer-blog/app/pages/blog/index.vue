@@ -24,21 +24,21 @@ definePageMeta({
 
 <template>
   <AppPageContainer
-      :title="title"
-      :description="description"
+    :title="title"
+    :description="description"
   >
     <UBlogPosts>
       <UBlogPost
-          v-for="(post, index) in posts"
-          :key="index"
-          :to="post.path"
-          :title="post.title"
-          :description="post.description"
-          :image="post.image"
-          :date="post.date"
-          :badge="post.category"
-          :authors="post.authors"
-          :ui="{
+        v-for="(post, index) in posts"
+        :key="index"
+        :to="post.path"
+        :title="post.title"
+        :description="post.description"
+        :image="post.image"
+        :date="post.date"
+        :badge="post.category"
+        :authors="post.authors"
+        :ui="{
           description: 'line-clamp-2',
         }"
       />

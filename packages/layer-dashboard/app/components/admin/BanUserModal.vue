@@ -1,59 +1,61 @@
 <script setup lang="ts">
-import type { FormSubmitEvent } from "#ui/types";
-import { z } from "zod";
+import type { FormSubmitEvent } from '#ui/types'
+import { z } from 'zod'
 
 interface Props {
-  user: SelectUser;
+  user: SelectUser
 }
-const props = defineProps<Props>();
+const props = defineProps<Props>()
 
-const open = defineModel({ default: false, type: Boolean });
+const open = defineModel({ default: false, type: Boolean })
 
-const isLoading = ref(false);
-const { showErrorToast, showSuccessToast } = useAppToast();
-const { t } = useI18n();
-const { client } = useAuth();
-const logger = useLogger();
+const isLoading = ref(false)
+const { showErrorToast, showSuccessToast } = useAppToast()
+const { t } = useI18n()
+const { client } = useAuth()
+const logger = useLogger()
 
 const schema = z.object({
   bannedReason: z
     .string()
     .min(
       10,
-      t("pages.admin.users.banUserModal.validationMessage.bannedReason")
+      t('pages.admin.users.banUserModal.validationMessage.bannedReason'),
     ),
-});
-type Schema = z.output<typeof schema>;
+})
+type Schema = z.output<typeof schema>
 
 const state = reactive({
-  bannedReason: "",
-});
+  bannedReason: '',
+})
 
-async function onSubmit(event: FormSubmitEvent<Schema>) {
-  isLoading.value = true;
+async function onSubmit (event: FormSubmitEvent<Schema>) {
+  isLoading.value = true
 
   try {
     const { error } = await client.admin.banUser({
-      userId: props.user.id,
-      banReason: event.data.bannedReason,
       banExpiresIn: undefined, // Permanent ban
-    });
+      banReason: event.data.bannedReason,
+      userId: props.user.id,
+    })
 
     if (error) {
-      logger.error("Failed to ban user", error);
-      showErrorToast(t("pages.admin.users.banUserModal.toast.banError"), error);
-      return;
+      logger.error('Failed to ban user', error)
+      showErrorToast(t('pages.admin.users.banUserModal.toast.banError'), error)
+      return
     }
 
     showSuccessToast({
-      title: t("pages.admin.users.banUserModal.toast.banSuccess"),
-    });
-    open.value = false;
-  } catch (error: any) {
-    logger.error("Failed to ban user", error);
-    showErrorToast(t("pages.admin.users.banUserModal.toast.banError"), error);
-  } finally {
-    isLoading.value = false;
+      title: t('pages.admin.users.banUserModal.toast.banSuccess'),
+    })
+    open.value = false
+  }
+  catch (error: any) {
+    logger.error('Failed to ban user', error)
+    showErrorToast(t('pages.admin.users.banUserModal.toast.banError'), error)
+  }
+  finally {
+    isLoading.value = false
   }
 }
 </script>
@@ -76,7 +78,11 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
           size="lg"
           required
         >
-          <UTextarea v-model="state.bannedReason" :rows="4" class="w-full" />
+          <UTextarea
+            v-model="state.bannedReason"
+            :rows="4"
+            class="w-full"
+          />
         </UFormField>
         <UButton
           block

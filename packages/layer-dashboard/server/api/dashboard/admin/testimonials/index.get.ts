@@ -1,5 +1,4 @@
 import z from 'zod'
-import type { Testimonial } from 'layer-auth/shared/types/db'
 
 const LOGGER_PREFIX = '[admin/testimonials.get]:'
 

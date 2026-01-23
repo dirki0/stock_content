@@ -1,5 +1,5 @@
 export * from './auth'
+export * from './banner'
+export * from './file'
 export * from './testimonial'
 export * from './waitlist'
-export * from './file'
-export * from './banner'

@@ -14,10 +14,10 @@
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
-    "nuxt": "catalog:",
-    "site-config": "workspace:*",
     "eslint-config": "workspace:*",
     "layer-core": "workspace:*",
-    "nuxt-email-renderer": "^2.1.2"
+    "nuxt": "catalog:",
+    "nuxt-email-renderer": "catalog:",
+    "site-config": "workspace:*"
   }
 }

@@ -16,19 +16,19 @@
     "eslint-config": "workspace:*",
     "layer-blog": "workspace:*",
     "layer-dashboard": "workspace:*",
+    "layer-docs": "workspace:*",
     "layer-testimonials": "workspace:*",
     "layer-waitlist": "workspace:*",
-    "layer-docs": "workspace:*",
     "nuxt": "catalog:",
     "site-config": "workspace:*",
     "tsx": "catalog:",
     "typescript": "catalog:",
-    "uuid": "^13.0.0",
+    "uuid": "catalog:",
     "vue": "catalog:",
     "vue-tsc": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "^1.2.82"
+    "@iconify-json/lucide": "catalog:"
   }
 }

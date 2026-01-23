@@ -12,6 +12,8 @@ interface Emits {
   upload: [string]
 }
 
+const logger = useLogger()
+
 const value = ref(null)
 const uploadedImageUrl = ref<null | string>(null)
 const { uploadToServer } = useFileStorage({
@@ -35,7 +37,7 @@ const { uploadToServer } = useFileStorage({
       emit('upload', file.id)
     }
     catch (error) {
-      console.error('Failed to fetch uploaded file URL', error)
+      logger.error('Failed to fetch uploaded file URL', error)
     }
   },
 })
@@ -53,7 +55,7 @@ async function onUpdateModelValue (file: File | null | undefined) {
     await uploadToServer(file)
   }
   catch (error: any) {
-    console.error('Upload failed', error)
+    logger.error('Upload failed', error)
   }
 }
 
@@ -75,7 +77,7 @@ watch(
           uploadedImageUrl.value = fileData.url
         }
         catch (error) {
-          console.error('Failed to load image URL', error)
+          logger.error('Failed to load image URL', error)
         }
       }
     }

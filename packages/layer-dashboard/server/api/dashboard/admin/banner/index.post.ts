@@ -20,13 +20,13 @@ export default defineEventHandler(async (event) => {
     const body = await readValidatedBody(event, bodySchema.parse)
 
     const { addItem } = useBanner()
-    
+
     // Transform showUntil to Date if provided
     const payload = {
       ...body,
       showUntil: body.showUntil ? new Date(body.showUntil) : undefined,
     }
-    
+
     const newItem = await addItem(payload)
 
     return {

@@ -13,15 +13,15 @@
     "dev:prepare": "nuxt prepare",
     "typecheck": "nuxt typecheck"
   },
+  "dependencies": {
+    "@unovis/ts": "catalog:",
+    "@unovis/vue": "catalog:"
+  },
   "devDependencies": {
     "layer-auth": "workspace:*",
     "layer-payment": "workspace:*",
     "layer-storage": "workspace:*",
     "layer-testimonials": "workspace:*",
     "nuxt": "catalog:"
-  },
-  "dependencies": {
-    "@unovis/ts": "^1.6.2",
-    "@unovis/vue": "^1.6.2"
   }
 }

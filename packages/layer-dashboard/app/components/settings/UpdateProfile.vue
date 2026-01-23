@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import type { FormSubmitEvent } from "#ui/types";
-import { z } from "zod";
+import type { FormSubmitEvent } from '#ui/types'
+import { z } from 'zod'
 
-const isLoading = ref(false);
+const isLoading = ref(false)
 
-const { t } = useI18n();
-const logger = useLogger();
-const auth = useAuth();
-const { showErrorToast, showSuccessToast } = useAppToast();
+const { t } = useI18n()
+const logger = useLogger()
+const auth = useAuth()
+const { showErrorToast, showSuccessToast } = useAppToast()
 
-const user = computed(() => auth.user.value);
+const user = computed(() => auth.user.value)
 
 const schema = z.object({
   imageUrl: z.string().optional(),
@@ -17,69 +17,76 @@ const schema = z.object({
     .string()
     .min(
       1,
-      t("pages.dashboard.settings.updateProfile.form.name.validationMessage")
+      t('pages.dashboard.settings.updateProfile.form.name.validationMessage'),
     ),
-});
-type Schema = z.output<typeof schema>;
+})
+type Schema = z.output<typeof schema>
 
 const state = ref({
-  imageUrl: auth.user.value?.image || "",
-  name: auth.user.value?.name || "",
-});
+  imageUrl: auth.user.value?.image || '',
+  name: auth.user.value?.name || '',
+})
 
-async function onSubmit(event: FormSubmitEvent<Schema>) {
-  isLoading.value = true;
+async function onSubmit (event: FormSubmitEvent<Schema>) {
+  isLoading.value = true
 
   const { error } = await auth.client.updateUser({
     image: event.data.imageUrl,
     name: event.data.name,
-  });
+  })
 
   if (error) {
-    logger.error("Failed to update profile", error);
+    logger.error('Failed to update profile', error)
     showErrorToast(
-      t("pages.dashboard.settings.updateProfile.toast.error.title"),
-      error
-    );
-  } else {
+      t('pages.dashboard.settings.updateProfile.toast.error.title'),
+      error,
+    )
+  }
+  else {
     showSuccessToast({
       description: t(
-        "pages.dashboard.settings.updateProfile.toast.success.description"
+        'pages.dashboard.settings.updateProfile.toast.success.description',
       ),
-      title: t("pages.dashboard.settings.updateProfile.toast.success.title"),
-    });
+      title: t('pages.dashboard.settings.updateProfile.toast.success.title'),
+    })
   }
 
-  isLoading.value = false;
+  isLoading.value = false
 }
 
-async function onUploadImage(fileId: string) {
-  state.value.imageUrl = fileId;
+async function onUploadImage (fileId: string) {
+  state.value.imageUrl = fileId
 
   // Automatically save the avatar to the user profile
   const { error } = await auth.client.updateUser({
     image: fileId,
-  });
+  })
 
   if (error) {
-    logger.error("Failed to update avatar", error);
+    logger.error('Failed to update avatar', error)
     showErrorToast(
-      t("pages.dashboard.settings.updateProfile.toast.error.title"),
-      error
-    );
-  } else {
+      t('pages.dashboard.settings.updateProfile.toast.error.title'),
+      error,
+    )
+  }
+  else {
     // Refresh the session to get the updated user data
-    await auth.fetchSession();
+    await auth.fetchSession()
     showSuccessToast({
-      description: "Avatar updated successfully",
-      title: "Avatar Updated",
-    });
+      description: 'Avatar updated successfully',
+      title: 'Avatar Updated',
+    })
   }
 }
 </script>
 
 <template>
-  <UForm v-if="auth.user" :schema="schema" :state="state" @submit="onSubmit">
+  <UForm
+    v-if="auth.user"
+    :schema="schema"
+    :state="state"
+    @submit="onSubmit"
+  >
     <UPageCard
       :title="t('pages.dashboard.settings.updateProfile.title')"
       :description="t('pages.dashboard.settings.updateProfile.description')"
