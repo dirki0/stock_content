@@ -12,6 +12,7 @@
     "lint:fix": "eslint . --fix",
     "dev:prepare": "nuxt prepare",
     "typecheck": "nuxt typecheck",
+    "db:studio": "drizzle-kit studio --config ./server/db/drizzle.config.ts",
     "db:generate": "drizzle-kit generate --config ./server/db/drizzle.config.ts",
     "db:migrate": "drizzle-kit migrate --config ./server/db/drizzle.config.ts"
   },

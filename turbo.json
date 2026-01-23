@@ -35,6 +35,15 @@
     },
     "typecheck": {
       "cache": true
+    },
+    "db:studio": {
+      "cache": false
+    },
+    "db:generate": {
+      "cache": false
+    },
+    "db:migrate": {
+      "cache": false
     }
   },
   "globalEnv": [

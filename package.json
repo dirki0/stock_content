@@ -11,7 +11,10 @@
     "typecheck": "turbo run typecheck",
     "lint:fix": "turbo run lint:fix",
     "postinstall": "pnpm run dev:prepare",
-    "prepare": "husky"
+    "prepare": "husky",
+    "db:studio": "dotenv -- turbo run db:studio --filter layer-auth",
+    "db:generate": "dotenv -- turbo run db:generate --filter layer-auth",
+    "db:migrate": "dotenv -- turbo run db:migrate --filter layer-auth"
   },
   "keywords": [],
   "author": "",

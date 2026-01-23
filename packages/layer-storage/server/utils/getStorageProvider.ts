@@ -3,7 +3,7 @@ import { getS3StorageProvider } from '../providers/s3'
 
 import type { StorageConfig, StorageProvider } from './types'
 
-export function getStorageProvider (config: StorageConfig['storage']): StorageProvider {
+export function getStorageProvider (config: StorageConfig): StorageProvider {
   switch (config.provider) {
     case 'local':
       return getLocalStorageProvider(config.uploadDir, config.local.publicPath)

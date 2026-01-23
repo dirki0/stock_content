@@ -39,7 +39,7 @@ export function useAuth () {
     }
     sessionFetching.value = true
     const { data } = await client.getSession()
-    session.value = data?.session || null
+    session.value = data?.session as Session || null
 
     const userDefaults = {
       banExpires: null,

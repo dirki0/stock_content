@@ -1,5 +1,7 @@
 import type { Buffer } from 'node:buffer'
 
+import type { RuntimeConfig } from 'nuxt/schema'
+
 export interface StorageProvider {
   delete: (path: string) => Promise<void>
   exists: (path: string) => Promise<boolean>
@@ -10,26 +12,4 @@ export interface StorageProvider {
 
 export type StorageProviderType = 'local' | 's3'
 
-export interface StorageConfig {
-  storage: {
-    allowedMimeTypes?: Array<string>
-    local: {
-      publicPath: string
-    }
-    maxFileSize?: number
-    provider: StorageProviderType
-    s3: {
-      accessKeyId: string
-      bucketName: string
-      endpoint?: string
-      publicUrl?: string
-      region: string
-      secretAccessKey: string
-    }
-    uploadDir: string
-    uploadRateLimit?: {
-      maxUploadsPerWindow: number // Maximum number of uploads allowed per window
-      windowSizeMinutes: number // Size of the time window in minutes
-    }
-  }
-}
+export type StorageConfig = RuntimeConfig['private']['storage']
