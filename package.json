@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev:web": "dotenv -- turbo run dev --filter web",
-    "dev:prepare": "turbo run dev:prepare",
+    "dev:prepare": "dotenv -- turbo run dev:prepare",
     "build": "turbo run build",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",

@@ -34,6 +34,7 @@
     "@iconify-json/lucide": "catalog:",
     "@nuxt/test-utils": "catalog:",
     "@playwright/test": "catalog:",
+    "@t3-oss/env-nuxt": "catalog:",
     "@vue/test-utils": "catalog:",
     "happy-dom": "catalog:",
     "playwright-core": "catalog:",
