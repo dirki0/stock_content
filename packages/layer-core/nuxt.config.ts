@@ -69,7 +69,6 @@ export default defineNuxtConfig({
 
   ogImage: {
     enabled: true,
-    zeroRuntime: true, // see https://nuxtseo.com/docs/og-image/guides/zero-runtime
   },
 
   robots: {
