@@ -59,7 +59,7 @@ const title = computed(() => props.title.slice(0, 60))
       </defs>
     </svg>
 
-    <div class="w-[600px] flex flex-grow flex-col justify-center">
+    <div class="w-[600px] flex grow flex-col justify-center">
       <h1 class="m-0 mb-4 flex w-[600px] items-center text-[75px] font-semibold text-white">
         <span>{{ title }}</span>
       </h1>

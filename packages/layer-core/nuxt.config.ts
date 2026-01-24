@@ -5,8 +5,6 @@ import { siteConfig } from 'site-config'
 export default defineNuxtConfig({
   compatibilityDate: '2026-01-24',
 
-  css: ['~/assets/css/main.css'],
-
   devServer: {
     port: 9009,
   },
