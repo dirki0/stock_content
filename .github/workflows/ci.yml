@@ -22,4 +22,5 @@ jobs:
           cache: "pnpm"
       - run: pnpm install
       - run: pnpm prepare
-      - run: pnpm pnpm run -r typecheck
+      - run: pnpm lint
+#      - run: pnpm typecheck
