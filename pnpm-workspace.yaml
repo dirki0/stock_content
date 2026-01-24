@@ -9,14 +9,17 @@ catalog:
   '@nuxt/content': ^3.10.0
   '@nuxt/eslint': 1.10.0
   '@nuxt/image': ^2.0.0
+  '@nuxt/test-utils': ^3.23.0
   '@nuxt/ui': ^4.3.0
   '@nuxtjs/i18n': 10.2.1
   '@nuxtjs/seo': ^3.3.0
+  '@playwright/test': ^1.58.0
   '@polar-sh/better-auth': ^1.6.3
   '@polar-sh/sdk': ^0.42.1
   '@types/pg': ^8.16.0
   '@unovis/ts': ^1.6.2
   '@unovis/vue': ^1.6.2
+  '@vue/test-utils': ^2.4.6
   '@vueuse/core': ^14.1.0
   '@vueuse/nuxt': ^14.1.0
   better-auth: ^1.4.9
@@ -26,6 +29,7 @@ catalog:
   drizzle-kit: ^0.31.8
   drizzle-orm: ^0.45.1
   eslint: ^9.39.2
+  happy-dom: ^20.3.7
   ioredis: ^5.8.2
   nuxt: ^4.2.2
   nuxt-email-renderer: ^2.1.2
@@ -33,9 +37,11 @@ catalog:
   nuxt-security: ^2.5.1
   nuxt-umami: ^3.2.1
   pg: ^8.16.3
+  playwright-core: ^1.58.0
   tsx: ^4.21.0
   typescript: ^5.9.3
   uuid: ^13.0.0
+  vitest: ^4.0.18
   vue: ^3.5.26
   vue-tsc: ^3.2.0
   zod: 4.2.1

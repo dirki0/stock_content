@@ -10,7 +10,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "dev:prepare": "nuxt prepare",
-    "typecheck": "nuxt typecheck"
+    "typecheck": "nuxt typecheck",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "eslint-config": "workspace:*",
@@ -29,6 +31,12 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@iconify-json/lucide": "catalog:"
+    "@iconify-json/lucide": "catalog:",
+    "@nuxt/test-utils": "catalog:",
+    "@playwright/test": "catalog:",
+    "@vue/test-utils": "catalog:",
+    "happy-dom": "catalog:",
+    "playwright-core": "catalog:",
+    "vitest": "catalog:"
   }
 }
