@@ -8,7 +8,7 @@ This is a **Turborepo monorepo** using **pnpm workspaces** and **Nuxt 4 layers**
 
 ```
 apps/web extends:
-  ├─ layer-dashboard (requires layer-auth, layer-payment, layer-storage)
+  ├─ layer-dashboard (requires layer-auth, layer-payment, layer-storage, layer-testimonials)
   ├─ layer-testimonials (requires layer-auth)
   ├─ layer-blog (requires layer-core)
   ├─ layer-waitlist (requires layer-auth)
@@ -17,7 +17,8 @@ apps/web extends:
 layer-dashboard extends:
   ├─ layer-auth
   ├─ layer-payment (requires layer-auth)
-  └─ layer-storage (requires layer-auth)
+  ├─ layer-storage (requires layer-auth)
+  └─ layer-testimonials (requires layer-auth)
 
 layer-auth extends:
   ├─ layer-core (base layer with @nuxt/ui, i18n, SEO)
@@ -40,10 +41,10 @@ pnpm lint           # Lint all packages
 pnpm lint:fix       # Auto-fix linting issues
 pnpm typecheck      # TypeScript check all packages
 
-# Database migrations (run from packages/layer-auth)
-cd packages/layer-auth
+# Database migrations (run from root)
 pnpm db:generate    # Generate migrations from schema
 pnpm db:migrate     # Apply migrations
+pnpm db:studio      # Open Drizzle Studio
 ```
 
 ### Environment Setup
@@ -71,7 +72,7 @@ Reference in `package.json` as: `"nuxt": "catalog:"`
 
 - **Database:** All schemas in `packages/layer-auth/server/db/schema/`
   - `auth.ts` - User, session, account, passkey (better-auth tables)
-  - `testimonial.ts`, `waitlist.ts`, `file.ts` - Feature tables
+  - `testimonial.ts`, `waitlist.ts`, `file.ts`, `banner.ts` - Feature tables
 - **Authentication:** Uses `better-auth` with plugins:
   - `@better-auth/passkey` - WebAuthn/passkey support
   - `@polar-sh/better-auth` - Polar.sh payment integration
@@ -115,7 +116,7 @@ try {
   showSuccessToast({ title: 'Success' })
 } catch (error) {
   logger.error('Operation failed', error)
-  showErrorToast({ title: 'Error', description: error.message })
+  showErrorToast('Error', error)
 }
 ```
 
@@ -171,7 +172,7 @@ const users = await db.select().from(schema.user).where(eq(schema.user.email, em
 ## Email System
 
 Located in `packages/layer-emails/server`:
-- `useEmail()` composable provides: `sendVerificationEmail()`, `sendPasswordResetEmail()`
+- `useEmail()` composable provides: `sendVerificationEmail()`, `sendPasswordResetEmail()`, `sendContactSubmissionEmail()`, `sendWaitlistVerificationEmail()`
 - Email templates in `packages/layer-emails/app/emails/`
 
 ## Payment Integration
@@ -180,7 +181,7 @@ Uses **Polar.sh** for subscriptions:
 - Configuration in `layer-payment` and `layer-auth`
 - Client: `useBilling()` composable
 - Server: `ensurePolarCustomer()` utility
-- Environment vars: `POLAR_ACCESS_TOKEN`, `POLAR_SERVER`, `POLAR_ORGANIZATION_ID`
+- Environment vars: `NUXT_PRIVATE_POLAR_ACCESS_TOKEN`, `NUXT_PRIVATE_POLAR_SERVER`, `NUXT_PRIVATE_POLAR_ORGANIZATION_ID`
 
 ## Key Files to Reference
 
