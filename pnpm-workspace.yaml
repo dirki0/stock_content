@@ -29,6 +29,9 @@ catalog:
   ioredis: ^5.8.2
   nuxt: ^4.2.2
   nuxt-email-renderer: ^2.1.2
+  nuxt-llms: ^0.2.0
+  nuxt-security: ^2.5.1
+  nuxt-umami: ^3.2.1
   pg: ^8.16.3
   tsx: ^4.21.0
   typescript: ^5.9.3

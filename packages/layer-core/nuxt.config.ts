@@ -3,7 +3,7 @@ import { siteConfig } from 'site-config'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-10-01',
+  compatibilityDate: '2026-01-24',
 
   css: ['~/assets/css/main.css'],
 
@@ -42,6 +42,12 @@ export default defineNuxtConfig({
     },
   },
 
+  llms: {
+    description: siteConfig.description,
+    domain: siteConfig.domain,
+    title: siteConfig.name,
+  },
+
   modules: [
     '@nuxt/ui',
     '@nuxt/content',
@@ -50,6 +56,9 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxtjs/i18n',
     '@vueuse/nuxt',
+    'nuxt-llms',
+    'nuxt-security',
+    'nuxt-umami',
   ],
 
   nitro: {
@@ -80,6 +89,31 @@ export default defineNuxtConfig({
     }),
   },
 
+  security: {
+    headers: {
+      contentSecurityPolicy: {
+        'img-src': [
+          '\'self\'',
+          'data:',
+          'https://avatars.githubusercontent.com',
+          'https://lh3.googleusercontent.com',
+          siteConfig.url,
+        ],
+        'script-src': [
+          '\'self\'',
+          '\'unsafe-inline\'',
+          '\'unsafe-eval\'',
+        ],
+        'script-src-attr': [
+          '\'self\'',
+          '\'unsafe-inline\'',
+          '\'unsafe-eval\'',
+        ],
+      },
+      crossOriginEmbedderPolicy: false,
+    },
+  },
+
   site: {
     defaultLocale: 'en-US',
     description: siteConfig.description,
@@ -88,4 +122,10 @@ export default defineNuxtConfig({
   },
 
   sitemap: { exclude: ['/admin/**'] },
+
+  umami: {
+    domains: [siteConfig.domain],
+    ignoreLocalhost: true,
+    proxy: 'cloak',
+  },
 })
