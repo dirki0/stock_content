@@ -6,8 +6,7 @@
   "scripts": {
     "dev:web": "dotenv -- turbo run dev --filter web",
     "dev:prepare": "dotenv -- turbo run dev:prepare",
-    "build": "turbo run build",
-    "build:web": "dotenv -- turbo run build --filter web",
+    "build": "dotenv -- turbo run build --filter web",
     "lint": "turbo run lint",
     "typecheck": "turbo run typecheck",
     "lint:fix": "turbo run lint:fix",
