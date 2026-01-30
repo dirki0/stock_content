@@ -453,7 +453,7 @@
     },
     "home": {
       "hero": {
-        "headline": "Powered by Nuxt UI & Nuxt Hub",
+        "headline": "Powered by Nuxt",
         "action1Label": "Get started"
       },
       "featureSection": {
