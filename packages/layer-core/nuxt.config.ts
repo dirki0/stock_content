@@ -95,6 +95,7 @@ export default defineNuxtConfig({
           'https://avatars.githubusercontent.com',
           'https://lh3.googleusercontent.com',
           siteConfig.url,
+          siteConfig.imageProviderUrl,
         ],
         'script-src': [
           '\'self\'',
