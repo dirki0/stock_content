@@ -101,15 +101,15 @@ export default defineNuxtConfig({
           '\'self\'',
           '\'unsafe-inline\'',
           '\'unsafe-eval\'',
+          '\'nonce-{{nonce}}\'', // Add nonce support
         ],
         'script-src-attr': [
-          '\'self\'',
           '\'unsafe-inline\'',
-          '\'unsafe-eval\'',
         ],
       },
       crossOriginEmbedderPolicy: false,
     },
+    nonce: true, // Enable automatic nonce generation
   },
 
   site: {
