@@ -1,49 +1,16 @@
 <script setup lang="ts">
 import type { FormSubmitEvent } from '@nuxt/ui'
-import { PasskeyRegisterModal } from '#components'
 import * as z from 'zod'
 
 const auth = useAuth()
 const { showErrorToast, showSuccessToast } = useAppToast()
 // const logger = useLogger()
 const { t } = useI18n()
-const overlay = useOverlay()
-const modal = overlay.create(PasskeyRegisterModal)
 
 const isLoading = ref(false)
 
 const title = computed(() => t('pages.register.title'))
 const description = computed(() => t('pages.register.description'))
-
-async function handlePasskeyRegister () {
-  isLoading.value = true
-
-  const email = await modal.open()
-  if (!email) {
-    isLoading.value = false
-    showErrorToast(t('components.auth.toast.passkeyRegisterError.label'), `${t('components.auth.passkey.register.emailRequired')}`)
-    return
-  }
-
-  const { error } = await auth.client.passkey.addPasskey({
-    name: email,
-  })
-
-  if (error) {
-    const errorMessage = error.message || t('components.auth.toast.passkeyRegisterError.label')
-    showErrorToast(t('components.auth.toast.passkeyRegisterError.label'), errorMessage)
-  }
-  else {
-    showSuccessToast({
-      description: t('components.auth.toast.passkeyRegisterSuccess.description'),
-      title: t('components.auth.toast.passkeyRegisterSuccess.label'),
-    })
-
-    await navigateTo('/dashboard')
-  }
-
-  isLoading.value = false
-}
 
 const fields = [{
   label: t('pages.register.nameField.label'),
@@ -80,13 +47,6 @@ const providers = computed(() => ([{
     await auth.signIn.social({
       provider: 'github',
     })
-  },
-}, {
-  icon: 'i-lucide-fingerprint',
-  label: 'Passkey',
-  loading: isLoading.value,
-  onClick: async () => {
-    await handlePasskeyRegister()
   },
 }]))
 
@@ -149,7 +109,7 @@ definePageMeta({
         <template #description>
           {{ $t('pages.register.alreadyAccount') }} <ULink
             to="/login"
-            class="text-(--ui-primary) font-medium"
+            class="text-primary font-medium"
           >
             {{ $t('pages.register.signIn') }}
           </ULink>.
@@ -158,7 +118,7 @@ definePageMeta({
         <template #footer>
           By signing up, you agree to our <ULink
             to="/legal/terms"
-            class="text-(--ui-primary) font-medium"
+            class="text-primary font-medium"
           >
             Terms of Service
           </ULink>.

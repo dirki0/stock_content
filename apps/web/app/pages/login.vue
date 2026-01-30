@@ -4,46 +4,12 @@ import * as z from 'zod'
 
 const { showErrorToast, showSuccessToast } = useAppToast()
 const { t } = useI18n()
-const { client, signIn } = useAuth()
+const { client } = useAuth()
 
 const isLoading = ref(false)
-const passkeyError = ref('')
 
 const title = computed(() => t('pages.login.title'))
 const description = computed(() => t('pages.login.description'))
-
-async function handlePasskeyAuthenticate () {
-  isLoading.value = true
-  passkeyError.value = ''
-
-  const { error } = await signIn.passkey({ // FIXME: Passkey login/signup does not work
-    autoFill: true,
-    fetchOptions: {
-      onError (context) {
-        passkeyError.value = context.error.message || 'Failed to authenticate'
-        showErrorToast(t('components.auth.toast.passkeyLoginError.label'), passkeyError.value)
-
-        isLoading.value = false
-      },
-      async onSuccess () {
-        showSuccessToast({
-          description: t('components.auth.toast.passkeyLoginSuccess.description'),
-          title: t('components.auth.toast.passkeyLoginSuccess.label'),
-        })
-
-        await navigateTo('/dashboard')
-
-        isLoading.value = false
-      },
-    },
-  })
-
-  if (error) {
-    passkeyError.value = error.message || 'Failed to authenticate'
-    showErrorToast(t('components.auth.toast.passkeyLoginError.label'), passkeyError.value)
-    isLoading.value = false
-  }
-}
 
 const fields = [{
   label: t('pages.login.emailField.label'),
@@ -73,13 +39,6 @@ const providers = computed(() => ([{
     await client.signIn.social({
       provider: 'github',
     })
-  },
-}, {
-  icon: 'i-lucide-fingerprint',
-  label: 'Passkey',
-  loading: isLoading.value,
-  onClick: async () => {
-    await handlePasskeyAuthenticate()
   },
 }]))
 
@@ -161,7 +120,7 @@ definePageMeta({
         <template #description>
           Don't have an account? <ULink
             to="/signup"
-            class="text-(--ui-primary) font-medium"
+            class="text-primary font-medium"
           >
             {{ $t('pages.login.signUp') }}
           </ULink>.
@@ -170,7 +129,7 @@ definePageMeta({
         <template #password-hint>
           <NuxtLink
             to="/forgot-password"
-            class="text-(--ui-primary) font-medium"
+            class="text-primary font-medium"
           >
             {{ $t('pages.login.forgotPassword') }}
           </NuxtLink>
@@ -178,7 +137,7 @@ definePageMeta({
         <template #footer>
           By signing in, you agree to our <ULink
             to="/legal/terms"
-            class="text-(--ui-primary) font-medium"
+            class="text-primary font-medium"
           >
             Terms of Service
           </ULink>.
