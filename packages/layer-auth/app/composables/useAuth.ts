@@ -1,5 +1,4 @@
 import { passkeyClient } from '@better-auth/passkey/client'
-import { polarClient } from '@polar-sh/better-auth/client'
 import type { CustomerState } from '@polar-sh/sdk/models/components/customerstate.js'
 import { adminClient, inferAdditionalFields } from 'better-auth/client/plugins'
 import { createAuthClient } from 'better-auth/vue'
@@ -23,7 +22,6 @@ export function useAuth () {
         },
       }),
       adminClient(),
-      polarClient(),
       passkeyClient(),
     ],
   })

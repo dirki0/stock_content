@@ -1,4 +1,4 @@
-import './validate-env'
+// import './validate-env'
 
 const REDIRECT_INTRUDERS_GIF = 'https://i.imgur.com/1Ia9tTG.gif'
 
