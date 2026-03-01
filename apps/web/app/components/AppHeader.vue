@@ -17,29 +17,14 @@ const links = computed(() => ([
     to: '/docs',
   },
   {
-    icon: 'i-lucide-shield-question',
-    label: t('general.links.faq'),
-    to: '/faq',
-  },
-  {
     icon: 'i-lucide-speech',
     label: t('general.links.testimonials'),
     to: '/testimonials',
   },
   {
-    icon: 'i-lucide-credit-card',
-    label: t('general.links.pricing'),
-    to: '/pricing',
-  },
-  {
     icon: 'i-lucide-newspaper',
     label: t('general.links.blog'),
     to: '/blog',
-  },
-  {
-    icon: 'i-lucide-clock-fading',
-    label: t('general.links.changelog'),
-    to: '/changelog',
   },
   {
     icon: 'i-lucide-mail',
