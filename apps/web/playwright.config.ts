@@ -35,7 +35,7 @@ export default defineConfig<ConfigOptions>({
   use: {
     /* Nuxt configuration options */
     nuxt: {
-      host: 'http://localhost:5001',
+      host: 'http://localhost:3000',
       rootDir: fileURLToPath(new URL('.', import.meta.url)),
     },
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
