@@ -32,7 +32,7 @@ layer-auth extends:
 ### Essential Commands
 
 ```bash
-# Start dev server for web app (runs on port 9009)
+# Start dev server for web app (runs on port 5001)
 pnpm dev:web
 
 # Turborepo commands (run from root)
