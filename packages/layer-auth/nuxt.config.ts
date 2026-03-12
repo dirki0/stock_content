@@ -1,12 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+
 export default defineNuxtConfig({
   extends: ['layer-core', 'layer-emails'],
 
   runtimeConfig: {
-    betterAuthSecret: '',
-    betterAuthUrl: '',
+    betterAuthSecret: 'qqIZ9RpG7Cyy7GMKTWHUSkgMrkMsX5MN',
+    betterAuthUrl: 'http://localhost:7000',
     private: {
-      databaseUrl: '',
+      databaseUrl: 'postgresql://postgres:postgres@localhost:5432/stock',
       githubClientId: '',
       githubClientSecret: '',
       googleClientId: '',
@@ -17,7 +18,7 @@ export default defineNuxtConfig({
         redirectGuestTo: '/login',
         redirectUserTo: '/',
       },
-      baseUrl: '',
+      baseUrl: 'https://stock.dev.chidi.art',
     },
   },
 })

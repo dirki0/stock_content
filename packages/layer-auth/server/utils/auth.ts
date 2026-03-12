@@ -65,7 +65,7 @@ export function createBetterAuth () {
         clientSecret: runtimeConfig.private.googleClientSecret!,
       },
     },
-    trustedOrigins: ['http://localhost:7000', runtimeConfig.public.baseUrl!],
+    trustedOrigins: ['http://localhost:3000', runtimeConfig.public.baseUrl!],
     user: {
       additionalFields: {
         polarCustomerId: {
