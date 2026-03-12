@@ -7,8 +7,6 @@ import { v7 as uuidv7 } from 'uuid'
 
 import * as schema from '../db/schema'
 
-import { setupPolar } from './polar'
-
 export function createBetterAuth () {
   const serverLogger = useServerLogger()
   const runtimeConfig = useRuntimeConfig()
@@ -53,7 +51,6 @@ export function createBetterAuth () {
     },
     plugins: [
       admin(),
-      setupPolar(),
       passkey(),
       ...(runtimeConfig.public.appEnv === 'development' ? [openAPI()] : []),
     ],
@@ -68,7 +65,7 @@ export function createBetterAuth () {
         clientSecret: runtimeConfig.private.googleClientSecret!,
       },
     },
-    trustedOrigins: ['http://localhost:3000', runtimeConfig.public.baseUrl!],
+    trustedOrigins: ['http://localhost:7000', runtimeConfig.public.baseUrl!],
     user: {
       additionalFields: {
         polarCustomerId: {
